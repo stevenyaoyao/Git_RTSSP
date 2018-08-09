@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<TemplateManager>
+	<Page Name="All Data Pages" PageGUID="4E459DD8-59C6-434B-BF48-003801886527" />
+	<Page Name="[Data Page] P_RawJKTBSupply" PageGUID="B2C061C8-884D-4380-B0EF-6F17E38DBFF4" />
+	<Page Name="[Data Page] P_JKTBSupply" PageGUID="CC9FF853-6D97-40CE-876F-96AD4F5B34B5" />
+	<Page Name="[Data Page] P_WeekOfDate" PageGUID="17373E14-2A50-46E0-80A5-B1EAD48ED6DB" />
+	<Page Name="[Data Page] P_JKTBLaycanTier" PageGUID="534DA713-56B5-4700-A089-E74D9FBC62D6" />
+	<Page Name="[Data Page] P_JKTBNoLaycanTierLocationProduct" PageGUID="F820D416-F865-4D5E-8ECA-A5F5D0EF7358" />
+	<Page Name="[Data Page] P_JKTBNominationNonPreferredDayPenalty" PageGUID="2745F835-5D6A-4E22-9AD0-7B88BA79A346" />
+	<Page Name="[Data Page] P_JKTBYTDShipmentQuantitySE" PageGUID="8D403AA1-F0AC-4FF2-8D44-AF0C1BE0CD20" />
+	<Page Name="[Data Page] P_JKTBContractQuantityAllSE" PageGUID="D44F11B1-8F52-4A92-8ED2-FCE7887868CF" />
+	<Page Name="[Data Page] P_JKTBContractQuantitySE" PageGUID="869B55B4-8298-47C8-92E7-B0E2C0D975C2" />
+	<Page Name="[Data Page] P_JKTBContractEndDateSE" PageGUID="9CF7F132-996E-4395-83B2-1BD038046F73" />
+	<Page Name="[Data Page] P_JKTBContractStartDateSE" PageGUID="F1CB9113-2DC4-4976-98C9-B4872AD67CA6" />
+	<Page Name="[Data Page] V_JKTBNominationSchedule" PageGUID="D2AA6830-363A-416B-BB08-0E3E6578A4DD" />
+	<Page Name="[Data Page] V_JKTBNominationProductSalesEntity" PageGUID="BAF5571B-0919-4276-9596-806E8300CB74" />
+	<Page Name="[Data Page] P_SalesEntityProductPair" PageGUID="3D8200EB-DFFE-4E90-8B43-029DD653F3E7" />
+	<Page Name="[Data Page] P_LocationProductPair" PageGUID="340A36F5-E5C9-48A7-9899-489CDFE1246C" />
+	<Page Name="[Data Page] V_JKTBSupplyExcess" PageGUID="4E3C795E-CCE4-4166-9842-FC8CEE9263CB" />
+	<Page Name="[Data Page] V_JKTBNegativeBalanceExcess" PageGUID="425A052A-5D9E-4D8D-AC61-FD8AD9BBCC53" />
+	<Page Name="[Data Page] V_JKTBNegativeBalance" PageGUID="493C23BD-D662-4E05-8B50-AC85E8A989D0" />
+	<Page Name="[Data Page] P_JKTBSalesEntityCPGap" PageGUID="E1E7730D-4CDB-4D0B-8551-13A04865DBF9" />
+	<Page Name="[Data Page] P_JKTBNominationSchedule" PageGUID="EE4282F0-0D93-46A1-87A5-83DB548414EC" />
+	<Page Name="[Data Page] P_JKTBNominationSplitSchedule" PageGUID="35EA2CA5-AB0C-492F-AD2D-3682F5DD61E6" />
+	<Page Name="[Data Page] P_JKTBNominationProductSalesEntity" PageGUID="7DE3E69A-6A9E-412D-915C-D8B1F465891E" />
+	<Page Name="[Data Page] P_JKTBNominationProductSchedule" PageGUID="0B863DAE-B807-47DF-8088-C18A5EEA5046" />
+	<Page Name="[Data Page] V_JKTBNominationProductSchedule" PageGUID="1059FB6C-A919-4844-86C4-67DC97E05504" />
+	<Page Name="[Data Page] V_JKTBSalesEntityCPGap" PageGUID="41236586-04E8-459C-91D0-B1B9409DAB3E" />
+	<Page Name="[Data Page] P_JKTBNegativeBalance" PageGUID="B5E40313-7051-4BBA-A256-E72AE53FFAC5" />
+	<Page Name="[Data Page] P_JKTBSupplyExcess" PageGUID="43D34D4C-7029-4C62-ABA4-C13BC6292112" />
+	<Page Name="[Data Page] P_JKTBNegativeBalanceExcess" PageGUID="B080799C-7015-4D24-B67C-DBF7E668AFBD" />
+	<Page Name="Test1" PageGUID="C68CE350-F27D-4467-A7D2-28F45A27DD34" />
+	<Page Name="[Data Page] P_JKTBStartDate" PageGUID="D97AC852-AF4E-4B34-8D75-64FA5C36B709" />
+	<Page Name="[Data Page] P_JKTBNominationScheduleData" PageGUID="06CDD1D4-6B6E-4E3F-9ABE-564899CC7097" />
+	<Page Name="[Data Page] P_JKTBGanttNominationLocation" PageGUID="C77867B5-9AD7-4CCE-AFB4-6BD0E46583F3" />
+	<Page Name="TestKPI" PageGUID="8227CBEC-2840-4B5C-8151-8E7A13F74D5A" />
+	<Page Name="[Data Page] V_ChinaShipmentDestination" PageGUID="A00294E4-3C51-4235-8E50-2A05BF7101EB" />
+	<Page Name="[Data Page] V_ChinaShipmentProductDestinationQuantity" PageGUID="BA1A0EE0-E5ED-44EA-9685-3EBC6967BB1D" />
+	<Page Name="[Data Page] V_ChinaShipmentProduct" PageGUID="CDE9AE08-B6C2-40AB-A995-3D3C2DD1D9F2" />
+	<Page Name="[Data Page] P_ChinaShipmentProductDestinationQuantity" PageGUID="CB47B876-B842-4E85-9D36-DAE249B6A38A" />
+	<Page Name="[Data Page] P_ChinaShipmentDestination" PageGUID="25E5D60E-A25E-489B-85BC-A5EAD39512A9" />
+	<Page Name="[Data Page] P_ChinaShipmentStem" PageGUID="C6FE32E0-6448-4243-80E7-A7B3EEFAC41A" />
+	<Page Name="[Data Page] V_ChinaDestinationDemandSlack" PageGUID="AE80C737-68EA-4F05-A370-85492DA842D6" />
+	<Page Name="[Data Page] V_ChinaShipmentCapacitySlack" PageGUID="3DEB7C7B-F74A-4F75-9D8B-E4E736CAA4DD" />
+	<Page Name="[Data Page] V_ChinaStemChanged" PageGUID="CBBDDE61-061D-46A9-9F5D-FE32E5E21022" />
+	<Page Name="[Data Page] P_ChinaPrefixedShipmentInScope" PageGUID="27B1ABA6-3D64-4B07-A26E-53182A5084E2" />
+	<Page Name="[Data Page] V_ChinaStemVariance" PageGUID="03AA8F21-396C-4508-8E8E-E5E7219699DC" />
+	<Page Name="[Data Page] P_ChinaDestinationDemand" PageGUID="1AA957B2-776D-49A8-8CEA-FC76B4F944B4" />
+	<Page Name="[Data Page] P_ChinaDestinationDemandSlack" PageGUID="59949CB1-B20A-40DF-9B2D-BD4C5492172D" />
+	<Page Name="[Data Page] P_ChinaSalesEntityAllocation" PageGUID="40EB9D7F-BD92-4B2E-86FB-508CE5C1E1E7" />
+	<Page Name="[Data Page] V_ChinaSalesEntity" PageGUID="696F8932-F286-43DC-983F-D859B751642D" />
+	<Page Name="[Data Page] P_IsShipmentValidForDestination" PageGUID="E53CB2F4-86F3-41BD-9A4E-A4DBFA59EBC8" />
+	<Page Name="[Data Page] P_ChinaQuota" PageGUID="63171756-9EE5-40B1-870B-EFF7AAA28226" />
+	<Page Name="[Data Page] P_ChinaStemVarianceByWeek" PageGUID="987DB3FD-A1C3-4F97-85AC-3EC15FCFD57A" />
+	<Page Name="[Data Page] P_ChinaStemVarianceByWeekDelta" PageGUID="95B74E5B-D8EF-426E-A5D6-91AF4ABEFDCE" />
+	<Page Name="[Data Page] P_TotalDemand" PageGUID="90004363-7BE8-446E-9753-92E39F10D7F6" />
+	<Page Name="[Data Page] P_TotalSupply" PageGUID="2ADF1AA4-6325-46F7-BBA1-721C0D495B5D" />
+</TemplateManager>

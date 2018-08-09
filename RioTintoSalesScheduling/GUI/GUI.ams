@@ -1,0 +1,217 @@
+## ams_version=1.0
+
+LibraryModule Library_GUI {
+    Prefix: gui;
+    Interface: data { LibraryInitialization, JKTB_GUI_Startup };
+    Section Conditional_Colours {
+        ElementParameter OC_JKTBLaycanDifference {
+            IndexDomain: jn;
+            Range: AllColors;
+            Definition: {
+                if(abs(O_JKTBNominationScheduleLaycanStart(jn) - P_JKTBLaycanStart(jn)) > 0) then
+                	'Highlight'
+                endif;
+            }
+        }
+        ElementParameter JKTBColour {
+            IndexDomain: jn;
+            Range: AllColors;
+        }
+        ElementParameter JKTBDemand_less_than_zero {
+            IndexDomain: (jn,pd);
+            Range: AllColors;
+            Definition: {
+                if P_JKTBDemand(jn, pd) < 0 then
+                	'red'
+                else
+                	'white'
+                endif
+            }
+        }
+    }
+    Section calculated_parameters {
+        DeclarationSection DisplayParameters {
+            Parameter O_JKTBNominationScheduleTonnesByWeek {
+                IndexDomain: (pd,wk);
+                Definition: sum(jn | P_WeekOfDate(O_JKTBNominationScheduleLoadEnd(jn)) = wk, P_JKTBDemand(jn, pd));
+            }
+            Parameter O_JKTBSupplyTonnesByWeek {
+                IndexDomain: (pd,wk);
+                Definition: sum(lo, P_JKTBSupply(lo, pd, wk));
+            }
+            Parameter O_JKTBNominationSupplyDeltaByWeek {
+                IndexDomain: (pd,wk);
+                Definition: O_JKTBSupplyTonnesByWeek(pd, wk) - O_JKTBNominationScheduleTonnesByWeek(pd, wk);
+            }
+            Parameter O_JKTBNegativeBalance {
+                IndexDomain: (pd,wk);
+                Definition: sum(lo, P_JKTBNegativeBalance(lo, pd, wk));
+            }
+            Parameter O_JKTBNumberLoaded {
+                IndexDomain: (lo,dt_plan);
+                Definition: sum(jno, V_JKTBNominationSchedule(jno, dt_plan, lo)) + sum(jns, V_JKTBNominationSplitSchedule(jns, dt_plan, lo));
+            }
+            StringParameter IdentifierDisplayName {
+                IndexDomain: IndexIdentifiers;
+                Definition: {
+                    data 
+                    { 'gui::O_JKTBNominationScheduleLoadEnd'     : "Load end"    ,  'gui::O_JKTBNominationScheduleETA'         : "ETA"         ,
+                      'gui::O_JKTBNominationScheduleLaycanEnd'   : "Laycan end"  ,  'gui::O_JKTBNominationScheduleLaycanStart' : "Laycan start",
+                      'gui::O_JKTBNominationScheduleLocation'     : "Load port"     }
+                }
+            }
+        }
+        DeclarationSection Post_process {
+            ElementParameter O_JKTBNominationScheduleLoadEnd {
+                IndexDomain: jn | jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Text: "test";
+                Range: S_CalendarDate;
+                Definition: {
+                    first(dt | sum(lo | jn in S_JKTBNomination_One, P_JKTBNominationSchedule(jn, dt, lo))  
+                            or sum(lo | jn in S_JKTBNomination_Split, P_JKTBNominationSplitSchedule(jn, dt, lo)))
+                }
+            }
+            ElementParameter O_JKTBNominationScheduleETA {
+                IndexDomain: jn | jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Range: S_CalendarDate;
+                Definition: O_JKTBNominationScheduleLoadEnd(jn) - P_JKTBLoadEndAssumption;
+            }
+            ElementParameter O_JKTBNominationScheduleLaycanStart {
+                IndexDomain: jn | jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Range: S_CalendarDate;
+                Definition: O_JKTBNominationScheduleETA(jn) - P_JKTBETAAssumption;
+            }
+            ElementParameter O_JKTBNominationScheduleLaycanEnd {
+                IndexDomain: jn | jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Range: S_CalendarDate;
+                Definition: O_JKTBNominationScheduleLaycanStart(jn) + P_JKTBLaycanLengthAssumption;
+            }
+            ElementParameter O_JKTBNominationScheduleLocation {
+                IndexDomain: jn | jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Text: "test";
+                Range: S_Location;
+                Definition: {
+                    first(lo | sum(dt | jn in S_JKTBNomination_One, P_JKTBNominationSchedule(jn, dt, lo))  
+                            or sum(dt | jn in S_JKTBNomination_Split, P_JKTBNominationSplitSchedule(jn, dt, lo)))
+                }
+            }
+            Parameter O_JKTBNominationScheduleTonnes {
+                IndexDomain: (jn,pd,se)| jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split;
+                Text: "test";
+                Definition: P_JKTBNominationProductSalesEntity(jn, pd, se) * P_JKTBDemand(jn, pd);
+            }
+            Parameter O_JKTBLaycanTier {
+                IndexDomain: jn;
+                Definition: P_JKTBLaycanTier(O_JKTBNominationScheduleLaycanStart(jn));
+            }
+        }
+        Set s_weeks_plan {
+            SubsetOf: S_Weeks;
+            Definition: {
+                {31.. 35}
+            }
+        }
+        Parameter p_JKTB_supply {
+            IndexDomain: (pd,wk);
+            Definition: sum(po, P_RawJKTBSupply(po, pd, wk));
+        }
+    }
+    Procedure JKTB_GUI_Startup {
+        Body: {
+            CreateColours;
+        }
+    }
+    Procedure CreateColours {
+        Body: {
+            if(not 'Page background' in allcolors) then
+            	Usercoloradd(color_name: "Page background", red: 52, green: 73, blue:94);
+            	endif;
+            
+            if(not 'Buttons' in allcolors) then
+            	Usercoloradd(color_name: "Buttons", red: 200, green: 200, blue:200);
+            	endif;
+            
+            if(not 'Button selected' in allcolors) then
+            	Usercoloradd(color_name: "Button selected", red: 161, green: 181, blue: 217);
+            	endif;
+            
+            if(not 'Widget background' in allcolors) then
+            	Usercoloradd(color_name: "Widget background", red: 250, green: 250, blue:250);
+            	endif;
+            
+            if(not 'Text' in allcolors) then
+            	Usercoloradd(color_name: "Text", red: 34, green: 49, blue: 63);
+            	endif;
+            
+            if(not 'Text OSCA' in allcolors) then
+            	Usercoloradd(color_name: "Text OSCA", red: 230, green: 13, blue:47);
+            	endif;
+            
+            if(not 'HighlightB' in allcolors) then
+            	Usercoloradd(color_name: "HighlightB", red: 241, green: 68, blue:95);
+            	endif;
+            
+            if(not 'Highlight' in allcolors) then
+            	Usercoloradd(color_name: "Highlight", red: 68, green: 108, blue: 179);
+            	endif;
+            
+            if(not 'Highlight2' in allcolors) then
+            	Usercoloradd(color_name: "Highlight2", red: 161, green: 181, blue: 217);
+            	endif;
+            
+            if(not 'Highlight3' in allcolors) then
+            	Usercoloradd(color_name: "Highlight3", red: 217, green: 225, blue: 239);
+            	endif;
+            
+            if(not 'Pivot row area background' in allcolors) then
+            	Usercoloradd(color_name: "Pivot row area background", red: 217, green: 225, blue: 239);
+            	endif;
+            
+            if(not 'Pivot row area selection' in allcolors) then
+            	Usercoloradd(color_name: "Pivot row area selection", red: 68, green: 108, blue: 179);
+            	endif;
+            
+            if(not 'Pivot row area headers' in allcolors) then
+            	Usercoloradd(color_name: "Pivot row area headers", red: 68, green: 108, blue: 179);
+            	endif;
+            
+            if(not 'Pivot grid area selection' in allcolors) then
+            	Usercoloradd(color_name: "Pivot grid area selection", red: 68, green: 108, blue: 179);
+            	endif;
+            
+            if(not 'Chart background' in allcolors) then
+            	Usercoloradd(color_name: "Chart background", red: 68, green: 108, blue: 179);
+            	endif;
+        }
+    }
+    Procedure LibraryInitialization {
+        Comment: "Add initialization statements here that do not require any other library being initialized already.";
+    }
+    Procedure PostLibraryInitialization {
+        Comment: {
+            "Add initialization statements here that require another library to be initialized already,
+            or add statements that require the Data Management module to be initialized."
+        }
+    }
+    Procedure PreLibraryTermination {
+        Body: {
+            return 1;
+        }
+        Comment: {
+            "Add termination statements here that require all other libraries to be still alive.
+            Return 1 if you allow the termination sequence to continue.
+            Return 0 if you want to cancel the termination sequence."
+        }
+    }
+    Procedure LibraryTermination {
+        Body: {
+            return 1;
+        }
+        Comment: {
+            "Add termination statements here that do not require other libraries to be still alive.
+            Return 1 to allow the termination sequence to continue.
+            Return 0 if you want to cancel the termination sequence.
+            It is recommended to only use the procedure PreLibraryTermination to cancel the termination sequence and let this procedure always return 1."
+        }
+    }
+}

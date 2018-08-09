@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Page Version="4000" TimeStamp="2018-07-25 02:54:42" NeedsCompiledModel="false">
+	<PageEditSize Type="Specified">
+		<Size Width="1100" Height="850" />
+	</PageEditSize>
+	<ProjectUUID>009BCFA1-C59B-4C62-9800-E131CCC07BE2</ProjectUUID>
+	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
+	<ResizeData>
+		<MainArea Line="FixedFromLeft" Value="9" />
+	</ResizeData>
+	<Background>
+		<UserColor>Widget background</UserColor>
+	</Background>
+	<UsedReferences>
+		<Model />
+	</UsedReferences>
+</Page>

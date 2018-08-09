@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<Page Version="4000" TimeStamp="2018-07-11 01:52:44">
+	<PageEditSize Type="Specified">
+		<Size Width="1500" Height="850" />
+	</PageEditSize>
+	<ProjectUUID>009BCFA1-C59B-4C62-9800-E131CCC07BE2</ProjectUUID>
+	<CloseWhenInactive>true</CloseWhenInactive>
+	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
+	<ResizeData>
+		<MainArea Line="FixedFromLeft" Value="171">
+			<LeftArea Line="FixedFromTop" Value="751">
+				<BottomArea Line="FixedFromBottom" Value="26" />
+			</LeftArea>
+			<RightArea Line="FixedFromTop" Value="40" />
+		</MainArea>
+	</ResizeData>
+	<Background Inherited="true" />
+	<PageObject Type="Rectangle">
+		<Location top="6" left="366" bottom="36" right="510" />
+		<Shape>Rounded-Filled</Shape>
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="0" left="174" bottom="36" right="396" />
+		<StaticText>Inputs</StaticText>
+		<Font GUID="496C2565-2454-45E9-B798-CEFD91082F0D" Name="Sub page title" />
+		<TextColor>
+			<UserColor>Highlight3</UserColor>
+		</TextColor>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="120" left="12" bottom="150" right="168" />
+		<FillColor>
+			<UserColor>Page background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Page background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Tabbed Page Object">
+		<Location top="48" left="180" bottom="846" right="1494" />
+		<TabOrder>2</TabOrder>
+		<PrintingOccurrence>Never</PrintingOccurrence>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<MultipleTabRows>true</MultipleTabRows>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="6" left="366" bottom="36" right="510" />
+		<TabOrder>3</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Read inputs"</Title>
+		<Transparent>true</Transparent>
+		<BackgroundColor>
+			<UserColor>Buttons</UserColor>
+		</BackgroundColor>
+		<ForegroundColor>
+			<UserColor>Text</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="Run">
+				<RunWhat>SpecificProcecure</RunWhat>
+				<Procedure>JKTBReadAndProcessData</Procedure>
+				<AbortOnError>true</AbortOnError>
+			</Action>
+			<Action Type="LinkedPage">
+				<Page PageGUID="241778F4-4B77-4736-AD50-C305F3D0C0F5" Name="MasterData" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<UsedReferences>
+		<Model>
+			<Symbol>JKTBReadAndProcessData</Symbol>
+		</Model>
+	</UsedReferences>
+</Page>

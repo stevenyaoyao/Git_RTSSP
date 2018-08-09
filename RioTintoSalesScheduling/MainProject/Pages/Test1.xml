@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Page Version="4000" TimeStamp="2018-07-10 09:26:02">
+	<PageEditSize Type="Inherited" />
+	<ProjectUUID>4667591F-41C9-47B8-8164-4BE4BD8059E0</ProjectUUID>
+	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
+	<Background Inherited="true" />
+	<PageObject Type="Gantt Chart">
+		<Location top="114" left="114" bottom="390" right="774" />
+		<TabOrder>1</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
+		<BackgroundColor RGB="#ffffff" />
+		<ColorScheme Number="0" />
+		<Legend>true</Legend>
+		<Y-Labels>true</Y-Labels>
+		<X-Labels>true</X-Labels>
+		<VerticalGridLines>true</VerticalGridLines>
+		<StatusLine>true</StatusLine>
+		<Calendar>
+			<Items>dmY</Items>
+			<MeasurementFactor>1</MeasurementFactor>
+			<MeasurementUnit>days</MeasurementUnit>
+			<ReferenceTime>"2018-07-11 09:39:12"</ReferenceTime>
+			<LeftBound>P_JKTBPlanningStartDateString</LeftBound>
+			<RightBound>P_JKTBPlanningEndDateString</RightBound>
+		</Calendar>
+		<IndexLocations>
+			<RowDomain>lo</RowDomain>
+		</IndexLocations>
+		<TaskGroup>
+			<Domain>P_JKTBGanttNominationLocation( jno, lo )</Domain>
+			<Start>P_JKTBStartDate( jno )</Start>
+			<Duration>P_JKTBDuration</Duration>
+		</TaskGroup>
+	</PageObject>
+	<UsedReferences>
+		<Model>
+			<Symbol>P_JKTBPlanningStartDateString</Symbol>
+			<Symbol>P_JKTBPlanningEndDateString</Symbol>
+			<Symbol>P_JKTBGanttNominationLocation</Symbol>
+			<Symbol>P_JKTBStartDate</Symbol>
+			<Symbol>P_JKTBDuration</Symbol>
+			<Symbol>lo</Symbol>
+			<Symbol>jno</Symbol>
+		</Model>
+	</UsedReferences>
+</Page>

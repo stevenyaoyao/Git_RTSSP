@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<PageManager>
+	<Page Name="MasterData" PageGUID="241778F4-4B77-4736-AD50-C305F3D0C0F5" />
+	<Page Name="Inputs" PageGUID="5D411390-D1A9-4D51-92F6-AAF74DA579A9">
+		<Page Name="Supply" PageGUID="4014522F-4D3A-421F-9AC8-5520BD8ACC6D" />
+		<Page Name="Nomination" PageGUID="6447B7C9-C37C-4D1D-8956-3FD59813813D" />
+		<Page Name="Contracts" PageGUID="FA17D164-BA86-4661-8320-92A7BCCFD785" />
+	</Page>
+	<Page Name="Solve" PageGUID="CE837C5F-29A5-42EA-A6B9-FE5C90FEFD17" />
+	<Page Name="JKTB_Schedule" PageGUID="C8C8B172-6B77-4D2F-9245-49F3322298D9" />
+	<Page Name="KPIs" PageGUID="EAD9FEA9-086E-4EE9-A40C-4201D20BD7C1" />
+	<Page Name="All Data Pages" PageGUID="38ADA2BE-3D23-44BA-92A5-2667F635A8A1">
+		<Page Name="[Data Page] gui IdentifierDisplayName" PageGUID="B39FE1A7-4334-44C1-B5D1-0F6FEA015B34" />
+		<Page Name="[Data Page] gui O_JKTBNominationScheduleTonnes" PageGUID="1489D5FA-9BF2-44E9-BD78-FFD523E2749F" />
+	</Page>
+</PageManager>

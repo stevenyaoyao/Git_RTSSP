@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<Page Version="4000" TimeStamp="2018-07-11 01:52:44" NeedsCompiledModel="false">
+	<PageEditSize Type="Inherited">
+		<Size Width="1500" Height="850" />
+	</PageEditSize>
+	<ProjectUUID>009BCFA1-C59B-4C62-9800-E131CCC07BE2</ProjectUUID>
+	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
+	<ResizeData>
+		<MainArea Line="FixedFromLeft" Value="171">
+			<LeftArea Line="FixedFromTop" Value="751">
+				<BottomArea Line="FixedFromBottom" Value="26" />
+			</LeftArea>
+			<RightArea Line="FixedFromTop" Value="40" />
+		</MainArea>
+	</ResizeData>
+	<Background>
+		<UserColor>Page background</UserColor>
+	</Background>
+	<PageObject Type="Rectangle">
+		<Location top="36" left="0" bottom="840" right="168" />
+		<FillColor>
+			<UserColor>Text</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Text</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="0" left="0" bottom="36" right="168" />
+		<FillColor>
+			<UserColor>Text OSCA</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Text OSCA</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="84" left="12" bottom="114" right="156" />
+		<TabOrder>1</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Master Data"</Title>
+		<Transparent>true</Transparent>
+		<BackgroundColor>
+			<UserColor>Text</UserColor>
+		</BackgroundColor>
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="LinkedPage">
+				<Page PageGUID="241778F4-4B77-4736-AD50-C305F3D0C0F5" Name="MasterData" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="120" left="12" bottom="150" right="156" />
+		<TabOrder>2</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Inputs"</Title>
+		<Transparent>true</Transparent>
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="LinkedPage">
+				<Page PageGUID="5D411390-D1A9-4D51-92F6-AAF74DA579A9" Name="Inputs" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="840" left="0" bottom="846" right="168" />
+		<FillColor>
+			<UserColor>Text OSCA</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Text OSCA</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="192" left="12" bottom="222" right="156" />
+		<TabOrder>7</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Outputs"</Title>
+		<Transparent>true</Transparent>
+		<BackgroundColor RGB="#00ff80" />
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="228" left="12" bottom="258" right="156" />
+		<TabOrder>5</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Transparent>true</Transparent>
+		<BackgroundColor RGB="#00ff80" />
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="264" left="12" bottom="294" right="156" />
+		<TabOrder>6</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Transparent>true</Transparent>
+		<BackgroundColor RGB="#00ff80" />
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="48" left="12" bottom="78" right="156" />
+		<TabOrder>3</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"JKTB schedule"</Title>
+		<Transparent>true</Transparent>
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="LinkedPage">
+				<Page PageGUID="C8C8B172-6B77-4D2F-9245-49F3322298D9" Name="JKTB_Schedule" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<PageObject Type="Picture">
+		<Location top="0" left="18" bottom="36" right="156" />
+		<FileName LiteralFileName="true">"&lt;lib:gui&gt;:logo.bmp"</FileName>
+		<Display>ActualSize</Display>
+		<Center>true</Center>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="156" left="12" bottom="186" right="156" />
+		<TabOrder>4</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Solve"</Title>
+		<Transparent>true</Transparent>
+		<BackgroundColor RGB="#ffffff" />
+		<ForegroundColor>
+			<UserColor>Widget background</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="LinkedPage">
+				<Page PageGUID="CE837C5F-29A5-42EA-A6B9-FE5C90FEFD17" Name="Solve" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<UsedReferences>
+		<Model />
+	</UsedReferences>
+</Page>

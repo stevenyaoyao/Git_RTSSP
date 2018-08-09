@@ -1,0 +1,20 @@
+﻿* AIMMS
+constraint_listing 2
+MIP_relative_optimality_tolerance 1e-007
+solver_listing_messages 4
+time_limit 60
+* AOA
+* CBC 2.9
+* CPLEX 12.8
+"CPLEX 12.8".feasibility_pump_heuristic -1
+"CPLEX 12.8".heuristic_frequency 1
+"CPLEX 12.8".local_branching_heuristic 1
+"CPLEX 12.8".MIP_probing 2
+"CPLEX 12.8".MIP_search_strategy 2
+"CPLEX 12.8".MIP_display 2
+"CPLEX 12.8".MIP_interval 2
+* IPOPT 3.11
+* NETSOL
+* Environment
+Startup_Procedure "MainInitialization"
+Startup_Page "JKTB_Schedule"

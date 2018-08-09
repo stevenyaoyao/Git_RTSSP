@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<UserFonts>
+	<UserFont Name="Main Font" FaceName="Calibri" PointSize="100" UUID="00000000-0000-0000-0000-000000000001" />
+	<UserFont Name="Sub page title" FaceName="Calibri Light" PointSize="220" UUID="496C2565-2454-45E9-B798-CEFD91082F0D" InternalID="1" />
+	<UserFont Name="Menu" FaceName="Calibri" PointSize="120" Bold="true" UUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" InternalID="2" />
+	<UserFont Name="SubMenu" FaceName="Arial" PointSize="120" UUID="8D6A111B-9FC3-4656-8E24-3274CBDC56C0" InternalID="3" />
+	<UserFont Name="Sample" FaceName="Arial" PointSize="280" UUID="A1364047-B03F-4555-94E3-E5A3EEB76D65" InternalID="4" />
+	<UserFont Name="Main page title" FaceName="Calibri" PointSize="220" Bold="true" UUID="76E61746-1CC0-424F-807D-4ECF3041AF90" InternalID="5" />
+	<UserFont Name="Menu Header" FaceName="Calibri" PointSize="120" Bold="true" UUID="B8DDA7E1-8A26-40E1-A750-589ECE0E2937" InternalID="6" />
+	<UserFont Name="KPI" FaceName="Calibri" PointSize="200" UUID="1B8857DA-4B4A-4E90-B3FA-0D4D9D4D3FB3" InternalID="7" />
+	<UserFont Name="Widget header" FaceName="Calibri Light" PointSize="140" UUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" InternalID="8" />
+	<UserFont Name="Table Aggregator" FaceName="Calibri" PointSize="80" Bold="true" UUID="A455DE5D-7624-42D9-B3A9-06286AA2D410" InternalID="9" />
+</UserFonts>

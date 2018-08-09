@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<StandardNumberFormat Name="Standard" InternalID="0">
+	<NumberFormat Width="6" Decimals="0" ThousandSeparator="true" />
+</StandardNumberFormat>
+<StandardNumberFormat Name="Percentage" InternalID="1">
+	<NumberFormat Width="6" Decimals="2" />
+</StandardNumberFormat>
+<StandardNumberFormat Name="Scientific" InternalID="2">
+	<NumberFormat Width="5" Decimals="3" Scientific="Always" ThousandSeparator="true" />
+</StandardNumberFormat>

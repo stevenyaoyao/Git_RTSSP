@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<Page Version="4000" TimeStamp="2018-07-31 07:08:33">
+	<PageEditSize Type="Specified">
+		<Size Width="1500" Height="850" />
+	</PageEditSize>
+	<ProjectUUID>009BCFA1-C59B-4C62-9800-E131CCC07BE2</ProjectUUID>
+	<CloseWhenInactive>true</CloseWhenInactive>
+	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
+	<ResizeData>
+		<MainArea Line="FixedFromLeft" Value="171">
+			<LeftArea Line="FixedFromTop" Value="751">
+				<BottomArea Line="FixedFromBottom" Value="26" />
+			</LeftArea>
+			<RightArea Line="FixedFromTop" Value="40">
+				<TopArea Line="FixedFromLeft" Value="457" />
+				<BottomArea Line="FixedFromLeft" Value="683">
+					<LeftArea Line="FixedFromTop" Value="366" />
+				</BottomArea>
+			</RightArea>
+		</MainArea>
+	</ResizeData>
+	<Background Inherited="true" />
+	<PageObject Type="Rectangle">
+		<Location top="54" left="504" bottom="96" right="804" />
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="102" left="504" bottom="144" right="804" />
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="0" left="180" bottom="36" right="402" />
+		<StaticText>Solve</StaticText>
+		<Font GUID="496C2565-2454-45E9-B798-CEFD91082F0D" Name="Sub page title" />
+		<TextColor>
+			<UserColor>Highlight3</UserColor>
+		</TextColor>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="156" left="12" bottom="186" right="168" />
+		<FillColor>
+			<UserColor>Page background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Page background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="360" left="738" bottom="396" right="840" />
+		<TabOrder>3</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Solve"</Title>
+		<BackgroundColor>
+			<UserColor>HighlightB</UserColor>
+		</BackgroundColor>
+		<ForegroundColor>
+			<UserColor>Text</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="Run">
+				<RunWhat>SpecificProcecure</RunWhat>
+				<Procedure>JKTBModelPreparation</Procedure>
+				<AbortOnError>true</AbortOnError>
+			</Action>
+			<Action Type="Run">
+				<RunWhat>SpecificProcecure</RunWhat>
+				<Procedure>JKTBSolve</Procedure>
+				<AbortOnError>true</AbortOnError>
+			</Action>
+			<Action Type="LinkedPage">
+				<Page PageGUID="C8C8B172-6B77-4D2F-9245-49F3322298D9" Name="JKTB_Schedule" />
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<PageObject Type="Table">
+		<Location top="84" left="180" bottom="246" right="498" />
+		<TabOrder>2</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<Border Style="None" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
+		<BackgroundColor>
+			<UserColor>Widget background</UserColor>
+		</BackgroundColor>
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+		<RowIndentation>3</RowIndentation>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeight1</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeight2</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeight3</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeight4</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeight5</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeightExcess1</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBWeightExcess2</Identifier>
+			<FirstColumn>0</FirstColumn>
+			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
+		</ExplicitIdentifier>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="108" left="510" bottom="132" right="648" />
+		<StaticText>End date</StaticText>
+		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="60" left="510" bottom="84" right="648" />
+		<StaticText>Start date</StaticText>
+		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="54" left="180" bottom="246" right="498" />
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="60" left="186" bottom="84" right="492" />
+		<StaticText>Objective function weightings</StaticText>
+		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+	</PageObject>
+	<PageObject Type="Scalar">
+		<Location top="60" left="672" bottom="90" right="798" />
+		<TabOrder>6</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
+		<BackgroundColor RGB="#ffffff" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+		<Layout>Value</Layout>
+		<SeparatorSign>=</SeparatorSign>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBPlanningStartDate</Identifier>
+			<NumberFormat Width="15" Decimals="0" Alignment="Left" ShowDefaults="true" />
+		</ExplicitIdentifier>
+	</PageObject>
+	<PageObject Type="Scalar">
+		<Location top="108" left="672" bottom="138" right="798" />
+		<TabOrder>5</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
+		<BackgroundColor RGB="#ffffff" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+		<Layout>Value</Layout>
+		<SeparatorSign>=</SeparatorSign>
+		<ExplicitIdentifier>
+			<Identifier>P_JKTBPlanningEndDate</Identifier>
+			<NumberFormat Width="15" Decimals="0" Alignment="Left" ShowDefaults="true" />
+		</ExplicitIdentifier>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="6" left="336" bottom="36" right="534" />
+		<Shape>Rounded-Filled</Shape>
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="6" left="336" bottom="36" right="534" />
+		<TabOrder>4</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Read optimiser defaults"</Title>
+		<Transparent>true</Transparent>
+		<BackgroundColor>
+			<UserColor>Buttons</UserColor>
+		</BackgroundColor>
+		<ForegroundColor>
+			<UserColor>Text</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
+			<Action Type="Run">
+				<RunWhat>SpecificProcecure</RunWhat>
+				<Procedure>JKTBModelPreparation</Procedure>
+				<AbortOnError>true</AbortOnError>
+			</Action>
+		</ActionSequence>
+	</PageObject>
+	<UsedReferences>
+		<Model>
+			<Symbol>JKTBModelPreparation</Symbol>
+			<Symbol>P_JKTBPlanningStartDate</Symbol>
+			<Symbol>P_JKTBPlanningEndDate</Symbol>
+			<Symbol>P_JKTBWeight1</Symbol>
+			<Symbol>P_JKTBWeight2</Symbol>
+			<Symbol>P_JKTBWeight3</Symbol>
+			<Symbol>P_JKTBWeight4</Symbol>
+			<Symbol>P_JKTBWeight5</Symbol>
+			<Symbol>P_JKTBWeightExcess1</Symbol>
+			<Symbol>P_JKTBWeightExcess2</Symbol>
+			<Symbol>JKTBSolve</Symbol>
+		</Model>
+	</UsedReferences>
+</Page>
