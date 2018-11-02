@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Page Version="4000" TimeStamp="2018-07-25 02:54:42">
+<Page Version="4000" TimeStamp="2018-08-14 09:53:47">
 	<PageEditSize Type="Inherited">
 		<Size Width="1500" Height="850" />
 	</PageEditSize>
@@ -7,8 +7,32 @@
 	<DockAlways>true</DockAlways>
 	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
 	<Background Inherited="true" />
+	<PageObject Type="Bar Chart">
+		<Location top="402" left="798" bottom="636" right="1230" />
+		<TabOrder>13</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
+		<BackgroundColor RGB="#ffffff" />
+		<ColorScheme Number="0" />
+		<SwappedAxes>true</SwappedAxes>
+		<Title>true</Title>
+		<Legend>true</Legend>
+		<Y-Labels>true</Y-Labels>
+		<X-Labels>true</X-Labels>
+		<HorizontalGridLines>true</HorizontalGridLines>
+		<StatusLine>true</StatusLine>
+		<YRange Automatic="false">
+			<Lower>0</Lower>
+			<Upper>7</Upper>
+			<NumGridPoints>7</NumGridPoints>
+		</YRange>
+		<ExplicitIdentifier>
+			<Identifier>gui::O_JKTBLaycanEquity( lt, gui::GUI_JKTBLaycanEquityPort, jcs )</Identifier>
+		</ExplicitIdentifier>
+		<FillWithColor>true</FillWithColor>
+	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="96" left="6" bottom="600" right="396" />
+		<Location top="96" left="6" bottom="642" right="426" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -17,7 +41,7 @@
 		</LineColor>
 	</PageObject>
 	<PageObject Type="Bar Chart">
-		<Location top="408" left="414" bottom="642" right="756" />
+		<Location top="402" left="438" bottom="636" right="780" />
 		<TabOrder>1</TabOrder>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
 		<Border Style="None" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
@@ -41,7 +65,7 @@
 		<FillWithColor>true</FillWithColor>
 	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="378" left="408" bottom="648" right="762" />
+		<Location top="372" left="432" bottom="642" right="786" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -50,7 +74,7 @@
 		</LineColor>
 	</PageObject>
 	<PageObject Type="Text">
-		<Location top="384" left="414" bottom="402" right="732" />
+		<Location top="378" left="438" bottom="396" right="756" />
 		<StaticText>Weekly tonnes shifted</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
@@ -101,7 +125,7 @@
 	</PageObject>
 	<PageObject Type="Text">
 		<Location top="12" left="234" bottom="36" right="414" />
-		<StaticText>Contract performance</StaticText>
+		<StaticText>JV Fairness</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
 			<UserColor>Text</UserColor>
@@ -269,7 +293,7 @@
 		</ExplicitIdentifier>
 	</PageObject>
 	<PageObject Type="Pivot Table">
-		<Location top="120" left="6" bottom="252" right="384" />
+		<Location top="120" left="6" bottom="270" right="420" />
 		<TabOrder>3</TabOrder>
 		<ObjectUUID>038BA0D3-39AB-44D2-9A3B-E0BFECCF829E</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
@@ -329,7 +353,7 @@
 		</Grid_Area>
 	</PageObject>
 	<PageObject Type="Curve">
-		<Location top="126" left="414" bottom="360" right="1206" />
+		<Location top="126" left="438" bottom="360" right="1230" />
 		<TabOrder>12</TabOrder>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
 		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
@@ -359,7 +383,7 @@
 		<MarkPoints>true</MarkPoints>
 	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="96" left="408" bottom="366" right="1212" />
+		<Location top="96" left="432" bottom="366" right="1236" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -368,7 +392,7 @@
 		</LineColor>
 	</PageObject>
 	<PageObject Type="Text">
-		<Location top="102" left="414" bottom="120" right="732" />
+		<Location top="102" left="438" bottom="120" right="756" />
 		<StaticText>Daily ETAs</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
@@ -376,7 +400,7 @@
 		</TextColor>
 	</PageObject>
 	<PageObject Type="Pivot Table">
-		<Location top="270" left="6" bottom="420" right="384" />
+		<Location top="282" left="6" bottom="438" right="420" />
 		<TabOrder>4</TabOrder>
 		<ObjectUUID>0CF970CD-0AC8-401F-BE97-8B1BB5215180</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
@@ -436,7 +460,7 @@
 		</Grid_Area>
 	</PageObject>
 	<PageObject Type="Pivot Table">
-		<Location top="444" left="6" bottom="594" right="390" />
+		<Location top="444" left="6" bottom="600" right="420" />
 		<TabOrder>2</TabOrder>
 		<ObjectUUID>66D9004D-DE51-418E-9C2E-0E929719E096</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
@@ -504,7 +528,7 @@
 		</TextColor>
 	</PageObject>
 	<PageObject Type="Text">
-		<Location top="252" left="12" bottom="270" right="330" />
+		<Location top="264" left="12" bottom="282" right="330" />
 		<StaticText>Supply</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
@@ -519,13 +543,46 @@
 			<UserColor>Text</UserColor>
 		</TextColor>
 	</PageObject>
+	<PageObject Type="Selection Object">
+		<SelectionType>DropDownList</SelectionType>
+		<Location top="378" left="1158" bottom="402" right="1230" />
+		<TabOrder>14</TabOrder>
+		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
+		<TextShown>ElementName</TextShown>
+		<Border Style="None" />
+		<BackgroundColor RGB="#ffffff" />
+		<ExplicitIdentifier>
+			<Identifier>gui::GUI_JKTBLaycanEquityPort</Identifier>
+		</ExplicitIdentifier>
+	</PageObject>
+	<PageObject Type="Rectangle">
+		<Location top="372" left="792" bottom="642" right="1236" />
+		<FillColor>
+			<UserColor>Widget background</UserColor>
+		</FillColor>
+		<LineColor>
+			<UserColor>Widget background</UserColor>
+		</LineColor>
+	</PageObject>
+	<PageObject Type="Text">
+		<Location top="378" left="798" bottom="396" right="1116" />
+		<StaticText>Count of laycan tier</StaticText>
+		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
+		<TextColor>
+			<UserColor>Text</UserColor>
+		</TextColor>
+	</PageObject>
 	<UsedReferences>
 		<Model>
+			<Symbol>lt</Symbol>
+			<Symbol>S_Location</Symbol>
 			<Symbol>P_JKTBTotalUnPreferredDayPenalty1</Symbol>
 			<Symbol>P_JKTBTotalUnPreferredDayPenalty2</Symbol>
 			<Symbol>P_JKTBTotalSalesEntityCpGap</Symbol>
 			<Symbol>P_JKTBTotalAllocationDiff</Symbol>
 			<Symbol>P_JKTBTotalNegativeBalance</Symbol>
+			<Symbol>gui::GUI_JKTBLaycanEquityPort</Symbol>
+			<Symbol>gui::O_JKTBLaycanEquity</Symbol>
 			<Symbol>gui::O_JKTBNominationScheduleTonnesByWeek</Symbol>
 			<Symbol>gui::O_JKTBSupplyTonnesByWeek</Symbol>
 			<Symbol>gui::O_JKTBNominationSupplyDeltaByWeek</Symbol>
@@ -535,6 +592,7 @@
 			<Symbol>lo</Symbol>
 			<Symbol>pd</Symbol>
 			<Symbol>wk</Symbol>
+			<Symbol>jcs</Symbol>
 			<Symbol>dt_plan</Symbol>
 		</Model>
 	</UsedReferences>

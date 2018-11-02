@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<Page Version="4000" TimeStamp="2018-08-24 03:45:21">
+<Page Version="4000" TimeStamp="2018-08-22 05:32:13">
 	<Location top="30" left="30" bottom="540" right="600" />
 	<PageEditSize Type="Inherited">
 		<Size Width="600" Height="540" />
 	</PageEditSize>
 	<ProjectUUID>4667591F-41C9-47B8-8164-4BE4BD8059E0</ProjectUUID>
-	<Title>"[Data Page] V_ChinaDestinationDemandSlack"</Title>
+	<Title>"[Data Page] P_RawChinaDestinationDemand"</Title>
 	<ResizeData>
 		<MainArea Line="FixedFromTop" Value="35">
 			<TopArea Line="FixedFromTop" Value="10" />
@@ -95,25 +95,14 @@
 	<PageObject Type="Pivot Table">
 		<Location top="10" left="10" bottom="530" right="510" />
 		<TabOrder>6</TabOrder>
-		<ObjectUUID>45F27CAF-5208-4D78-A5C0-F665B42BD78C</ObjectUUID>
+		<ObjectUUID>D2F348D8-4135-42AD-AD16-8AB54D8A91AC</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
 		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
 		<Contents>
 			<Explicit_Identifier>
-				<Identifier ID="4110">V_ChinaDestinationDemandSlack( de, pd )</Identifier>
+				<Identifier ID="4110">P_RawChinaDestinationDemand( de, se, pd )</Identifier>
 			</Explicit_Identifier>
 		</Contents>
-		<Indices>
-			<Suffix_Index>
-				<Explicit_Suffix>
-					<Suffix ID="6620">"Level"</Suffix>
-				</Explicit_Suffix>
-				<Explicit_Suffix>
-					<Suffix ID="6620">"basic"</Suffix>
-				</Explicit_Suffix>
-				<Location_in_Initial_View ID="6660">"As Outer Index"</Location_in_Initial_View>
-			</Suffix_Index>
-		</Indices>
 		<General>
 			<Dense_Aggregation_restricts_to_Domain ID="1022">"Yes"</Dense_Aggregation_restricts_to_Domain>
 			<Save_Layout_State>
@@ -151,8 +140,9 @@
 	</PageObject>
 	<UsedReferences>
 		<Model>
-			<Symbol>V_ChinaDestinationDemandSlack</Symbol>
+			<Symbol>P_RawChinaDestinationDemand</Symbol>
 			<Symbol>pd</Symbol>
+			<Symbol>se</Symbol>
 			<Symbol>de</Symbol>
 		</Model>
 	</UsedReferences>

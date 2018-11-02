@@ -55,4 +55,7 @@
 	<Page Name="[Data Page] P_ChinaStemVarianceByWeekDelta" PageGUID="95B74E5B-D8EF-426E-A5D6-91AF4ABEFDCE" />
 	<Page Name="[Data Page] P_TotalDemand" PageGUID="90004363-7BE8-446E-9753-92E39F10D7F6" />
 	<Page Name="[Data Page] P_TotalSupply" PageGUID="2ADF1AA4-6325-46F7-BBA1-721C0D495B5D" />
+	<Page Name="[Data Page] P_RawChinaDestinationDemand" PageGUID="F5EC7390-0B5B-48F5-B27C-4203A2F24BCC" />
+	<Page Name="[Data Page] P_ChinaNumberOfRequestForParentBuyer" PageGUID="729A87E9-CFFB-43D3-9242-74A5BDAE4286" />
+	<Page Name="[Data Page] V_ChinaNorthSouthVariation" PageGUID="CB5E14EB-585D-48D6-ABA2-61133F8C9ACF" />
 </TemplateManager>

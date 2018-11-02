@@ -1,0 +1,28 @@
+
+Solve problem 'M_JKTBModel' with 668 rows, 4380 columns (2366 binaries, 24 generals), and 24744 nonzeros.
+
+MIP - Integer optimal solution:  Objective = 3.6640346094e+007
+Solution time = 0.26 sec.  Iterations = 109  Nodes = 0
+
+
+Postsolve problem 'M_JKTBModel' with 668 rows, 4380 columns, and 24744 nonzeros.
+Tried aggregator 1 time.
+LP Presolve eliminated 668 rows and 4380 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.71 ticks)
+
+RMIP - Optimal:  Objective = 3.6640346094e+007
+Solution time = 0.00 sec.  Iterations = 0
+
+
+Solve problem 'M_ChinaMainModel' with 27102 rows, 26195 columns (6773 binaries, 19024 generals), and 251399 nonzeros.
+
+MIP - Integer optimal, tolerance:  Objective = 1.1656519056e+007
+Solution time = 6.87 sec.  Iterations = 3145  Nodes = 0
+
+
+Solve problem 'M_ChinaSalesEntityModel' with 320 rows, 601 columns (580 binaries, 0 generals), and 1210 nonzeros.
+
+MIP - Integer optimal solution:  Objective = 2.6581632653e+002
+Solution time = 0.00 sec.  Iterations = 0  Nodes = 0
+

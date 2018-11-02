@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
-<Page Version="4000" TimeStamp="2018-07-31 07:08:33">
+<Page Version="4000" TimeStamp="2018-09-04 07:09:59">
 	<PageEditSize Type="Inherited">
 		<Size Width="1500" Height="850" />
 	</PageEditSize>
 	<ProjectUUID>009BCFA1-C59B-4C62-9800-E131CCC07BE2</ProjectUUID>
-	<CloseWhenInactive>true</CloseWhenInactive>
 	<TemplatesTabOrderPosition>1</TemplatesTabOrderPosition>
 	<ResizeData>
 		<MainArea Line="FixedFromLeft" Value="171">
@@ -50,7 +49,7 @@
 		</TextColor>
 	</PageObject>
 	<PageObject Type="Pivot Table">
-		<Location top="66" left="180" bottom="846" right="1488" />
+		<Location top="60" left="180" bottom="840" right="1488" />
 		<TabOrder>2</TabOrder>
 		<ObjectUUID>11B3F21B-E52C-47F3-8740-36DFC82B8663</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
@@ -77,8 +76,15 @@
 				<Title ID="4120">"Vessel"</Title>
 			</Explicit_Identifier>
 			<Explicit_Identifier>
+				<Identifier ID="4110">gui::O_JKTBLaycanDeltaDays( jn )</Identifier>
+				<Title ID="4120">"Laycan Δ"</Title>
+			</Explicit_Identifier>
+			<Explicit_Identifier>
 				<Identifier ID="4110">gui::O_JKTBNominationScheduleLaycanStart( jn )</Identifier>
 				<Title ID="4120">gui::IdentifierDisplayName( 'gui::O_JKTBNominationScheduleLaycanStart' )</Title>
+				<Format>
+					<Show_value_bar ID="4340">"Not show value bars"</Show_value_bar>
+				</Format>
 				<Colors>
 					<Background_Color ID="4160">gui::OC_JKTBLaycanDifference( jn )</Background_Color>
 				</Colors>
@@ -172,7 +178,7 @@
 	</PageObject>
 	<PageObject Type="Button">
 		<Location top="6" left="366" bottom="36" right="504" />
-		<TabOrder>4</TabOrder>
+		<TabOrder>5</TabOrder>
 		<LeaveOnEnter>false</LeaveOnEnter>
 		<ButtonType>Text</ButtonType>
 		<Title>"KPIs window"</Title>
@@ -193,7 +199,7 @@
 		<TabOrder>3</TabOrder>
 		<LeaveOnEnter>false</LeaveOnEnter>
 		<ButtonType>Text</ButtonType>
-		<Title>"Solve"</Title>
+		<Title>"Prep"</Title>
 		<BackgroundColor>
 			<UserColor>HighlightB</UserColor>
 		</BackgroundColor>
@@ -207,13 +213,26 @@
 				<Procedure>JKTBModelPreparation</Procedure>
 				<AbortOnError>true</AbortOnError>
 			</Action>
+		</ActionSequence>
+	</PageObject>
+	<PageObject Type="Button">
+		<Location top="6" left="618" bottom="36" right="720" />
+		<TabOrder>4</TabOrder>
+		<LeaveOnEnter>false</LeaveOnEnter>
+		<ButtonType>Text</ButtonType>
+		<Title>"Solve"</Title>
+		<BackgroundColor>
+			<UserColor>HighlightB</UserColor>
+		</BackgroundColor>
+		<ForegroundColor>
+			<UserColor>Text</UserColor>
+		</ForegroundColor>
+		<Font GUID="785D4931-6F2C-4F3B-8AB4-9114BDF743AB" Name="Menu" />
+		<ActionSequence>
 			<Action Type="Run">
 				<RunWhat>SpecificProcecure</RunWhat>
 				<Procedure>JKTBSolve</Procedure>
 				<AbortOnError>true</AbortOnError>
-			</Action>
-			<Action Type="LinkedPage">
-				<Page PageGUID="C8C8B172-6B77-4D2F-9245-49F3322298D9" Name="JKTB_Schedule" />
 			</Action>
 		</ActionSequence>
 	</PageObject>
@@ -234,6 +253,7 @@
 			<Symbol>JKTBSolve</Symbol>
 			<Symbol>gui::OC_JKTBLaycanDifference</Symbol>
 			<Symbol>gui::IdentifierDisplayName</Symbol>
+			<Symbol>gui::O_JKTBLaycanDeltaDays</Symbol>
 			<Symbol>gui::O_JKTBNominationScheduleLoadEnd</Symbol>
 			<Symbol>gui::O_JKTBNominationScheduleETA</Symbol>
 			<Symbol>gui::O_JKTBNominationScheduleLaycanStart</Symbol>

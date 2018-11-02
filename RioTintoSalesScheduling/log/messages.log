@@ -1,1 +1,71 @@
-﻿
+﻿Warning: The units associated with the expression (Abs( gui::O_JKTBNominationScheduleLaycanStart(jn) - P_JKTBLaycanStart(jn)) )[day], and with the expression (0)[] are not commensurate.
+Warning: The unit [] of parameter "gui::O_JKTBLaycanDeltaDays" is not commensurate with the unit [day] of its "definition".
+Warning: The unit [] of parameter "P_ChinaTimeCompareNumber1" is not commensurate with the unit [second] of its "assigned value".
+Warning: The unit [] of parameter "P_ChinaTimeCompareNumber2" is not commensurate with the unit [second] of its "assigned value".
+There is 79.863 Mb in use.
+Warning: The domain set "S_JKTBNomination_One" is not initialized (default values are used).
+Warning: The parameter "P_JKTBNominationSchedule" is not initialized (default values are used).
+Warning: The set "S_JKTBNomination_Split" is not initialized (default values are used).
+Warning: The parameter "P_JKTBNominationSplitSchedule" is not initialized (default values are used).
+Warning: The parameter "P_JKTBLoadEndAssumption" is not initialized (default values are used).
+Warning: The parameter "P_JKTBETAAssumption" is not initialized (default values are used).
+Warning: The parameter "P_JKTBLaycanLengthAssumption" is not initialized (default values are used).
+Warning: The parameter "P_JKTBNominationProductSalesEntity" is not initialized (default values are used).
+Warning: The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,40)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,41)" are equal in the generated mathematical program "M_JKTBModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,39)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,40)" are equal in the generated mathematical program "M_JKTBModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,38)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,39)" are equal in the generated mathematical program "M_JKTBModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The rows "C_JKTBMaxCustomerNomination(DA,1,DSC)" and "C_JKTBMaxCustomerNomination(DA,1,FHS)" are equal in the generated mathematical program "M_JKTBModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: The rows "C_JKTBMaxCustomerNomination(DA,1,DSC)" and "C_JKTBMaxCustomerNomination(DA,1,HDS)" are equal in the generated mathematical program "M_JKTBModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: The rows "C_JKTBMaxCustomerNomination(DA,1,HDS)" and "C_JKTBMaxCustomerNomination(DA,1,HP)" are equal in the generated mathematical program "M_JKTBModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: Only 3 out of 1788 duplicate column warnings were reported. 
+See also option limit_reported_duplicate_column_row_warnings.
+Warning: Only 3 out of 50 duplicate row warnings were reported. 
+See also option limit_reported_duplicate_column_row_warnings.
+Warning: The parameter "P_ChinaShipmentDestination" is not initialized (default values are used).
+Warning: The element parameter "P_ChinaParentBuyer" is not initialized (default values are used).
+Warning: The parameter "P_ChinaShipmentStem" is not initialized (default values are used).
+Warning: The parameter "P_ChinaFinalShipmentStem" is not initialized (default values are used).
+Warning: The parameter "P_ChinaFinalShipmentStemByDe" is not initialized (default values are used).
+Warning: The parameter "P_ChinaDestinationDemand" is not initialized (default values are used).
+Warning: The variable "V_ChinaShipmentProductDestinationQuantity" is not initialized (default values are used).
+Warning: The parameter "P_ChinaBatchSize" is not initialized (default values are used).
+Warning: The variable "V_ChinaShipmentDestination" is not initialized (default values are used).
+Warning: The parameter "P_ChinaLaycanTierShipments" is not initialized (default values are used).
+Warning: The parameter "P_ChinaPreferedLancanTierPercentage" is not initialized (default values are used).
+Warning: The parameter "P_ChinaIsCustomerSouth" is not initialized (default values are used).
+The maximum of 20 warnings reached, further warnings suppressed. 
+See also option maximal_number_of_warnings_reported
+Warning: The columns "V_ChinaSalesEntity(0358,PB-L,BJV)" and "V_ChinaSalesEntity(0358,PB-L,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The columns "V_ChinaSalesEntity(0358,PB-F,BJV)" and "V_ChinaSalesEntity(0358,PB-F,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The columns "V_ChinaSalesEntity(0361,PB-F,BJV)" and "V_ChinaSalesEntity(0361,PB-F,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".
+This may lead to non-unique solutions. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning: The rows "C_ChinaPrefixedSalesEntity(1120,RV-F,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1120,RV-F)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: The rows "C_ChinaPrefixedSalesEntity(1122,RV-L,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1122,RV-L)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: The rows "C_ChinaPrefixedSalesEntity(1122,RV-F,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1122,RV-F)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". 
+This may lead to non-unique shadow prices. 
+For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning: Only 3 out of 113 duplicate column warnings were reported. 
+See also option limit_reported_duplicate_column_row_warnings.
+Warning: Only 3 out of 16 duplicate row warnings were reported. 
+See also option limit_reported_duplicate_column_row_warnings.

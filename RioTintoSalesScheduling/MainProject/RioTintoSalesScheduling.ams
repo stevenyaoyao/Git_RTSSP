@@ -20,6 +20,9 @@ Model Main_RioTintoSalesScheduling {
                 Quantity SI_Time_Duration {
                     BaseUnit: day;
                 }
+                Quantity SI_Time_Duration2 {
+                    BaseUnit: second;
+                }
             }
         }
         Section MasterData {
@@ -1823,7 +1826,7 @@ Model Main_RioTintoSalesScheduling {
                 }
                 Set S_JKTBContract {
                     Index: jct;
-                    Definition: elementrange(1,100,1);
+                    Definition: elementrange(1,500,1);
                 }
             }
             DeclarationSection JKTBParameter {
@@ -1926,9 +1929,495 @@ Model Main_RioTintoSalesScheduling {
                 StringParameter P_JKTBContractDescription {
                     IndexDomain: jct;
                 }
+                StringParameter P_JKTBContractYearType {
+                    IndexDomain: jct;
+                }
             }
         }
         Procedure JKTBReadData {
+            Body: {
+                !!! Read JKTB data (including master data)
+                
+                empty MasterData, JKTBData;
+                
+                P_FileName := "InputData\\Data Mapping.xlsx";
+                !FileSelect(
+                !	filename  :  P_FileName,
+                !	directory :  ,
+                !	extension :  ".xlsx",
+                !	title     :  );
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Port_Location_Mapping");
+                numRows := 20;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Port, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Location, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationOfPort, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                rowRangeStr := formatString("B2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationNameOfLocation, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"LocationProductPair");
+                numRows := 100;
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Product, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationProductPair, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesEntityProductPair");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_SalesEntity, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityProductPair, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"CustomerName_ShortName_Mapping");
+                numRows := 500;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Customer, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawCustomerFullName, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_CustomerFullName, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"JKTBCustomers");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A100");
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_JKTBCustomer, Range:dataRangeStr, Mode:'replace');
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesOrg_SalesEntity_Mapping");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawSalesOrg, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawICSalesOrg, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityOfOrgIcOrg, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                rowRangeStr := formatString("C2:C%i",numRows);
+                dataRangeStr := formatString("D2:D%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityFullName, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesEntityPrdComb");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawSalesEntityPrdComb, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityOfSEPrdComb, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfSEPrdComb, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"ShipmentPrdProductPF");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawShipmentPrdPF, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfShipmentPrdPf, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"ShipmentPrdProductCLA");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawShipmentPrdCLA, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfShipmentPrdCla, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                
+                
+                !P_FileName := "InputData\\CY_FY2018 JKTB Nomination Planning_Master (Original Submission).xlsm";
+                FileSelect(
+                	filename  :  P_FileName,
+                	directory :  ,
+                	extension :  ".xlsm",
+                	title     :  );
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"DataRange");
+                
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_WeeklyBucketStartColumn, Range:"C2");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_WeeklyBucketEndColumn, Range:"C3");
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Weekly Bucket");
+                !numRows := 20;
+                !numColumns := 6;
+                
+                columnRangeStr := P_WeeklyBucketStartColumn + "137" + ":" + P_WeeklyBucketEndColumn + "137";
+                dataRangeStr := P_WeeklyBucketStartColumn + "135" + ":" + P_WeeklyBucketEndColumn + "135";
+                !columnRangeStr := formatString("K137:P137");
+                !dataRangeStr := formatString("K135:P135");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_WeekStartDate, DataRange:dataRangeStr, ColumnsRange:columnRangeStr);
+                
+                dataRangeStr := P_WeeklyBucketStartColumn + "136" + ":" + P_WeeklyBucketEndColumn + "136";
+                !dataRangeStr := formatString("K136:P136");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_WeekEndDate, DataRange:dataRangeStr, ColumnsRange:columnRangeStr);
+                
+                rowRangeStr := formatString("B139:C140");
+                columnRangeStr := P_WeeklyBucketStartColumn + "137" + ":" + P_WeeklyBucketEndColumn + "137";
+                dataRangeStr := P_WeeklyBucketStartColumn + "139" + ":" + P_WeeklyBucketEndColumn + "140";
+                !columnRangeStr := formatString("K137:P137");
+                !dataRangeStr := formatString("K139:P140");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_RawJKTBSupply, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                rowRangeStr := formatString("B146:C147");
+                columnRangeStr := P_WeeklyBucketStartColumn + "137" + ":" + P_WeeklyBucketEndColumn + "137";
+                dataRangeStr := P_WeeklyBucketStartColumn + "146" + ":" + P_WeeklyBucketEndColumn + "147";
+                !columnRangeStr := formatString("K137:P137");
+                !dataRangeStr := formatString("K146:P147");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_RawJKTBSupply, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                rowRangeStr := formatString("B161:C163");
+                columnRangeStr := P_WeeklyBucketStartColumn + "137" + ":" + P_WeeklyBucketEndColumn + "137";
+                dataRangeStr := P_WeeklyBucketStartColumn + "161" + ":" + P_WeeklyBucketEndColumn + "163";
+                !columnRangeStr := formatString("K137:P137");
+                !dataRangeStr := formatString("K161:P163");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_RawJKTBSupply, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                rowRangeStr := formatString("B170:C172");
+                columnRangeStr := P_WeeklyBucketStartColumn + "137" + ":" + P_WeeklyBucketEndColumn + "137";
+                dataRangeStr := P_WeeklyBucketStartColumn + "170" + ":" + P_WeeklyBucketEndColumn + "172";
+                !columnRangeStr := formatString("K137:P137");
+                !dataRangeStr := formatString("K170:P172");
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_RawJKTBSupply, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"DataRange");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_NomimationSheetName, Range:"C4");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_NomimationSheetStartRow, Range:"C5");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_NomimationSheetEndRow, Range:"C6");
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                !SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Q2 (Jul to Sep)");
+                !dataRangeStr := formatString("A4:A143");
+                !SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_JKTBCustomer, Range:dataRangeStr, Mode:'replace');
+                
+                /*DL 20180727: moved this to an explicit list in the Data Mapping excel file*/
+                !SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SAP Contracts");
+                !dataRangeStr := formatString("L4:L60");
+                !SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_JKTBCustomer, Range:dataRangeStr, Mode:'replace');
+                
+                
+                
+                axll::CloseAllWorkBooks;
+                axll::OpenWorkBook(WorkbookFilename: P_FileName );
+                
+                !axll::SelectSheet(SheetName : "Q2 (Jul to Sep)" );
+                axll::SelectSheet(SheetName: P_NomimationSheetName);
+                
+                dataRangeStr := "a" + P_NomimationSheetStartRow + ":" + "a" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBCustomer,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "a4:a147",
+                
+                dataRangeStr := "b" + P_NomimationSheetStartRow + ":" + "b" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBWeek,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "b4:b147",
+                
+                dataRangeStr := "c" + P_NomimationSheetStartRow + ":" + "c" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBSAPNumber,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "c4:c147",
+                
+                dataRangeStr := "d" + P_NomimationSheetStartRow + ":" + "d" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBIncoterms,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "d4:d147",
+                
+                dataRangeStr := "e" + P_NomimationSheetStartRow + ":" + "e" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBVessel,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "e4:e147",
+                
+                dataRangeStr := "f" + P_NomimationSheetStartRow + ":" + "f" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBLaycanStart,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "f4:f147",
+                
+                dataRangeStr := "g" + P_NomimationSheetStartRow + ":" + "g" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBLaycanEnd,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "g4:g147",
+                
+                dataRangeStr := "h" + P_NomimationSheetStartRow + ":" + "h" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBETA,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "h4:h147",
+                
+                dataRangeStr := "i" + P_NomimationSheetStartRow + ":" + "i" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBPreferredLoadEndDate,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "i4:i147",
+                
+                dataRangeStr := "j" + P_NomimationSheetStartRow + ":" + "j" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBPreferredLoadPort,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "j4:j147",
+                
+                dataRangeStr := "k" + P_NomimationSheetStartRow + ":" + "v" + P_NomimationSheetEndRow;
+                axll::ReadRawValues(
+                IdentifierReference   : P_RawJKTBDemand,
+                DataRange             : dataRangeStr,
+                MergeWithExistingData :  0);
+                !DataRange             : "k4:v147",
+                
+                
+                
+                !axll::CloseAllWorkBooks;
+                !axll::OpenWorkBook(WorkbookFilename : P_FileName );
+                axll::SelectSheet(SheetName : "SAP Contracts" );
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractSalesDocument,
+                DataRange             : "a4:a500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractProduct,
+                DataRange             : "b4:b500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractSalesDocumentType,
+                DataRange             : "c4:c500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractQuantity,
+                DataRange             : "d4:d500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractStartDate,
+                DataRange             : "e4:e500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractEndDate,
+                DataRange             : "f4:f500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractCreatedBy,
+                DataRange             : "g4:g500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractMaterial,
+                DataRange             : "h4:h500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractName1,
+                DataRange             : "i4:i500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractSalesOrg,
+                DataRange             : "j4:j500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractDescription,
+                DataRange             : "k4:k500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractCustomer,
+                DataRange             : "l4:l500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractSalesEntity,
+                DataRange             : "m4:m500",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_JKTBContractYearType,
+                DataRange             : "n4:n500",
+                MergeWithExistingData :  0);
+                
+                
+                
+                axll::SelectSheet(SheetName : "TPPS" );
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_ShipNumberOfYTDShipment,
+                DataRange             : "a2:a10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_DeliveryNumberOfYTDShipment,
+                DataRange             : "b2:b10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_VesselNameOfYTDShipment,
+                DataRange             : "c2:c10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_ArrivalDateTimeOfYTDShipment,
+                DataRange             : "d2:d10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_SailDateTimeOfYTDShipment,
+                DataRange             : "e2:e10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_BerthOfYTDShipment,
+                DataRange             : "f2:f10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_MaterialOfYTDShipment,
+                DataRange             : "g2:g10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_DeliveryQuantityOfYTDShipment,
+                DataRange             : "h2:h10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_OREContractOfYTDShipment,
+                DataRange             : "i2:i10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_PlantOfYTDShipment,
+                DataRange             : "j2:j10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_LaycanStartOfYTDShipment,
+                DataRange             : "k2:k10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_LaycanEndOfYTDShipment,
+                DataRange             : "l2:l10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_LoadingStartOfYTDShipment,
+                DataRange             : "m2:m10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_LoadEndDateOfYTDShipment,
+                DataRange             : "n2:n10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_SoldToPartyOfYTDShipment,
+                DataRange             : "o2:o10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_RawCustomerFullNameOfYTDShipment,
+                DataRange             : "p2:p10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_ProductOfYTDShipment,
+                DataRange             : "q2:q10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_SalesDistrictTextOfYTDShipment,
+                DataRange             : "r2:r10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_IncotermOfYTDShipment,
+                DataRange             : "s2:s10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_CompanyOfYTDShipment,
+                DataRange             : "t2:t10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_RawSalesOrg,
+                DataRange             : "u2:u10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_OrderTypeOfYTDShipment,
+                DataRange             : "v2:v10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_RawICSalesOrg,
+                DataRange             : "w2:w10000",
+                MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                IdentifierReference   : P_CustomerOfYTDShipment,
+                DataRange             : "x2:x10000",
+                MergeWithExistingData :  0);
+                
+                axll::CloseAllWorkBooks;
+            }
+            StringParameter P_FileName;
+            Parameter numRows;
+            Parameter numColumns;
+            StringParameter dataRangeStr;
+            StringParameter rowRangeStr;
+            StringParameter columnRangeStr;
+            StringParameter P_WeeklyBucketStartColumn;
+            StringParameter P_WeeklyBucketEndColumn;
+            StringParameter P_NomimationSheetName;
+            StringParameter P_NomimationSheetStartRow;
+            StringParameter P_NomimationSheetEndRow;
+        }
+        Procedure JKTBReadData_v2 {
             Body: {
                                 !!! Read JKTB data (including master data)
                 
@@ -2451,7 +2940,7 @@ Model Main_RioTintoSalesScheduling {
             StringParameter rowRangeStr;
             StringParameter columnRangeStr;
         }
-        Procedure JKTBReadData_Ori {
+        Procedure JKTBReadData_v1 {
             Body: {
                 !!! Read JKTB data (including master data)
                 
@@ -3011,8 +3500,8 @@ Model Main_RioTintoSalesScheduling {
                 	endif;
                 endfor;
                 
-                P_JKTBPlanningStartDate := '25/06/2018';
-                P_JKTBPlanningEndDate := '24/07/2018';
+                P_JKTBPlanningStartDate := '25/10/2018';
+                P_JKTBPlanningEndDate := '24/11/2018';
                 
                 P_JKTBWeight1 := 1000000; !10000000 all preferred dates
                 !P_JKTBWeight1 := 10000;
@@ -3033,15 +3522,30 @@ Model Main_RioTintoSalesScheduling {
         }
         Section ChinaData {
             DeclarationSection ChinaSet {
+                Set S_ChinaParentBuyer {
+                    Index: cpb;
+                }
                 Set S_ChinaCustomer {
+                    SubsetOf: S_ChinaParentBuyer;
                     Index: ccs;
                 }
                 Set S_ChinaTrader {
+                    SubsetOf: S_ChinaParentBuyer;
                     Index: ctd;
                 }
                 Set S_ChinaDestination {
+                    SubsetOf: Integers;
                     Index: de;
+                    Definition: {
+                        !elementrange(1,300,1)
+                    }
+                }
+                Set S_ChinaDestination_v1 {
                     Definition: elementrange(1,300,1);
+                }
+                Set S_ChinaDestinationTest {
+                    SubsetOf: Integers;
+                    Index: detest;
                 }
                 Set S_ChinaShipment {
                     Index: sh;
@@ -3110,13 +3614,22 @@ Model Main_RioTintoSalesScheduling {
                     IndexDomain: shpf;
                     Range: S_CalendarDate;
                 }
+                StringParameter P_ChinaShipmentPFEndTimeString {
+                    IndexDomain: shpf;
+                }
                 ElementParameter P_ChinaShipmentCLAEnd {
                     IndexDomain: shcla;
                     Range: S_CalendarDate;
                 }
+                StringParameter P_ChinaShipmentCLAEndTimeString {
+                    IndexDomain: shcla;
+                }
                 ElementParameter P_ChinaShipmentEnd {
                     IndexDomain: (sh);
                     Range: S_CalendarDate;
+                }
+                StringParameter P_ChinaShipmentEndTimeString {
+                    IndexDomain: (sh);
                 }
                 Parameter P_ChinaShipmentPFStem {
                     IndexDomain: (shpf,shprdpf);
@@ -3133,8 +3646,9 @@ Model Main_RioTintoSalesScheduling {
                 StringParameter P_ChinaTier {
                     IndexDomain: de;
                 }
-                StringParameter P_ChinaParentBuyer {
+                ElementParameter P_ChinaParentBuyer {
                     IndexDomain: de;
+                    Range: S_ChinaParentBuyer;
                 }
                 Parameter P_ChinaLaycanTierDayMapping {
                     IndexDomain: (lt,dt);
@@ -3153,11 +3667,14 @@ Model Main_RioTintoSalesScheduling {
                 Parameter P_ChinaDestinationDemand {
                     IndexDomain: (de,pd);
                 }
+                Parameter P_RawChinaDestinationDemand {
+                    IndexDomain: (de, se, pd);
+                }
                 Parameter P_ChinaSalesEntityTargetedQuantity {
                     IndexDomain: (se,pd);
                 }
                 ElementParameter P_ChinaPrefixedSalesEntity {
-                    IndexDomain: de;
+                    IndexDomain: (de, pd);
                     Range: S_SalesEntity;
                 }
                 Parameter P_ChinaBatchSize;
@@ -3217,6 +3734,446 @@ Model Main_RioTintoSalesScheduling {
             }
         }
         Procedure ChinaReadData {
+            Body: {
+                !!! Read China data (including master data)
+                
+                empty MasterData, ChinaData;
+                
+                ! Read Master Data
+                P_FileName := "InputData\\Data Mapping.xlsx";
+                !FileSelect(
+                !	filename  :  P_FileName,
+                !	directory :  ,
+                !	extension :  ".xlsx",
+                !	title     :  );
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Port_Location_Mapping");
+                numRows := 20;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Port, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Location, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationOfPort, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                rowRangeStr := formatString("B2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationNameOfLocation, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"LocationProductPair");
+                numRows := 100;
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Product, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_LocationProductPair, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesEntityProductPair");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_SalesEntity, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityProductPair, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"CustomerName_ShortName_Mapping");
+                numRows := 500;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_Customer, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawCustomerFullName, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_CustomerFullName, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesOrg_SalesEntity_Mapping");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawSalesOrg, Range:dataRangeStr, Mode:'replace');
+                
+                dataRangeStr := formatString("B2:B%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawICSalesOrg, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:B%i",numRows);
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityOfOrgIcOrg, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                rowRangeStr := formatString("C2:C%i",numRows);
+                dataRangeStr := formatString("D2:D%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityFullName, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"SalesEntityPrdComb");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawSalesEntityPrdComb, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_SalesEntityOfSEPrdComb, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("C2:C%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfSEPrdComb, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"ShipmentPrdProductPF");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawShipmentPrdPF, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfShipmentPrdPf, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"ShipmentPrdProductCLA");
+                numRows := 100;
+                dataRangeStr := formatString("A2:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawShipmentPrdCLA, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A2:A%i",numRows);
+                dataRangeStr := formatString("B2:B%i", numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ProductOfShipmentPrdCla, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                
+                
+                ! Read China Data
+                !P_FileName := "InputData\\July 2018 Quota.xlsx";
+                !FileSelect(
+                !	filename  :  P_FileName,
+                !	directory :  ,
+                !	extension :  ".xlsx",
+                !	title     :  );
+                
+                P_FileName := "InputData\\China Data Source.xlsx";
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Sheet1");
+                
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaQuotaDataFile, Range:"B2");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaPreAllocationDataFile, Range:"B3");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaInitialAlloactionDataFile, Range:"B4");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaVLOCSheet, Range:"B5");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaSAPColumn, Range:"B6");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaSAPColumnStartRow, Range:"B7");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaSAPColumnVLOCStartRow, Range:"B8");
+                spreadsheet::RetrieveParameter(Workbook:P_FileName, Parameter:P_ChinaSAPColumnVLOCEndRow, Range:"B9");
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                
+                
+                P_FileName := "InputData\\" + P_ChinaQuotaDataFile;
+                
+                axll::CloseAllWorkBooks;
+                axll::OpenWorkBook(WorkbookFilename : P_FileName );
+                
+                axll::SelectSheet(SheetName : "Pooled Fleet Schedule" );
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFWeek,
+                	DataRange             : "d6:d1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentPFSAPNumber,
+                	DataRange             : "e6:e1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFVessel,
+                	DataRange             : "f6:f1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentPFMarket,
+                	DataRange             : "g6:g1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentPFBuyer,
+                	DataRange             : "h6:h1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFBerth,
+                	DataRange             : "i6:i1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFBerthOrder,
+                	DataRange             : "j6:j1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFETA,
+                	DataRange             : "k6:k1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFStart,
+                	DataRange             : "l6:l1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFEnd,
+                	DataRange             : "m6:m1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFEndTimeString,
+                	DataRange             : "m6:m1000",
+                	MergeWithExistingData :  0);	
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentPFStem,
+                	DataRange             : "n6:p1000",
+                	MergeWithExistingData :  0);
+                
+                
+                
+                axll::SelectSheet(SheetName : "Cape Lambert A Schedule" );
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAWeek,
+                	DataRange             : "d6:d1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentCLASAPNumber,
+                	DataRange             : "e6:e1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAVessel,
+                	DataRange             : "f6:f1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentCLAMarket,
+                	DataRange             : "g6:g1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_RawChinaShipmentCLABuyer,
+                	DataRange             : "h6:h1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLABerth,
+                	DataRange             : "i6:i1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLABerthOrder,
+                	DataRange             : "j6:j1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAETA,
+                	DataRange             : "k6:k1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAStart,
+                	DataRange             : "l6:l1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAEnd,
+                	DataRange             : "m6:m1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAEndTimeString,
+                	DataRange             : "m6:m1000",
+                	MergeWithExistingData :  0);
+                
+                axll::ReadRawValues(
+                	IdentifierReference   : P_ChinaShipmentCLAStem,
+                	DataRange             : "n6:p1000",
+                	MergeWithExistingData :  0);
+                
+                axll::CloseAllWorkBooks;
+                
+                
+                
+                !P_FileName := "InputData\\Pre-allocation template July.xlsx";
+                !FileSelect(
+                !	filename  :  P_FileName,
+                !	directory :  ,
+                !	extension :  ".xlsx",
+                !	title     :  );
+                
+                P_FileName := "InputData\\" + P_ChinaPreAllocationDataFile;
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Sheet1");
+                
+                numRows := 505;
+                dataRangeStr := formatString("A6:A%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_ChinaDestination, Range:dataRangeStr, Mode:'replace');
+                
+                rowRangeStr := formatString("A6:A%i",numRows);
+                
+                dataRangeStr := formatString("B6:B%i",numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaRegion, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("E6:E%i",numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaTier, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("G6:G%i",numRows);
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_ChinaParentBuyer, Range:dataRangeStr, Mode:'replace');
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaParentBuyer, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("H6:H%i",numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaContractType, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                dataRangeStr := formatString("I6:I%i",numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaSalesEntity, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                !SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaPrefixedSalesEntity, DataRange:dataRangeStr, RowsRange:rowRangeStr);
+                
+                !columnRangeStr := formatString("P5:U5");
+                !dataRangeStr := formatString("P6:U%i",numRows);
+                !SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaDestinationDemand, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                columnRangeStr := formatString("W4:AN5");
+                dataRangeStr := formatString("W6:AN%i",numRows);
+                SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_RawChinaDestinationDemand, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                
+                
+                !P_FileName := "InputData\\China Preallocation most updated - DL disaggreagated ships.xlsm";
+                
+                !axll::CloseAllWorkBooks;
+                !axll::OpenWorkBook(WorkbookFilename : P_FileName );
+                
+                !axll::SelectSheet(SheetName : "2018 CY&FY-Plan" );
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaRegion,
+                !	DataRange             : "b6:b104",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaTier,
+                !	DataRange             : "e6:e104",
+                !	MergeWithExistingData :  0);
+                !
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaParentBuyer,
+                !	DataRange             : "g6:g154",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadSet(
+                !	SetReference              :  S_ChinaCustomer, 
+                !	SetRange                  :  "g6:g104", 
+                !	ExtendSuperSets           :  1, 	
+                !	MergeWithExistingElements :  0, 
+                !	SkipEmptyCells            :  0);
+                
+                !axll::ReadSet(
+                !	SetReference              :  S_ChinaTrader, 
+                !	SetRange                  :  "g142:g154", 
+                !	ExtendSuperSets           :  1, 	
+                !	MergeWithExistingElements :  0, 
+                !	SkipEmptyCells            :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaContractType,
+                !	DataRange             : "h6:h154",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaSalesEntity,
+                !	DataRange             : "i6:i154",
+                !	MergeWithExistingData :  0);
+                !
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaPrefixedSalesEntity,
+                !	DataRange             : "i6:i154",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaDestinationDemand,
+                !	DataRange             : "gw6:ha104",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaDestinationDemandString,
+                !	DataRange             : "gw6:ha154",
+                !	MergeWithExistingData :  0);
+                
+                !axll::ReadRawValues(
+                !	IdentifierReference   : P_ChinaSalesEntityTargetedQuantity,
+                !	DataRange             : "gw6:ha154",
+                !	MergeWithExistingData :  0);
+                
+                !axll::CloseAllWorkBooks;
+                
+                
+                
+                !P_FileName := "InputData\\China Preallocation most updated - DL disaggreagated ships.xlsm";
+                
+                !SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"2018 CY&FY-Plan");
+                
+                !dataRangeStr := formatString("g6:g104");
+                !SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_ChinaCustomer, Range:dataRangeStr, Mode:'replace');
+                
+                !dataRangeStr := formatString("g142:g154");
+                !SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_ChinaTrader, Range:dataRangeStr, Mode:'replace');
+                
+                !rowRangeStr := formatString("GV108:GV110");
+                !columnRangeStr := formatString("GW107:HA107");
+                !dataRangeStr := formatString("GW108:HA110");
+                !SpreadSheet::RetrieveTable(Workbook:P_FileName, Parameter:P_ChinaSalesEntityTargetedQuantity, DataRange:dataRangeStr, RowsRange:rowRangeStr, ColumnsRange:columnRangeStr);
+                
+                !Spreadsheet::CloseWorkbook(P_FileName, 0);
+                
+                
+                
+                !P_FileName := "InputData\\Initial Allocation_Jul 18.xlsx";
+                !FileSelect(
+                !	filename  :  P_FileName,
+                !	directory :  ,
+                !	extension :  ".xlsx",
+                !	title     :  );
+                
+                P_FileName := "InputData\\" + P_ChinaInitialAlloactionDataFile;
+                
+                !SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:"Jul VLOC Schedule");
+                SpreadSheet::SetActiveSheet(Workbook:P_FileName, Name:P_ChinaVLOCSheet);
+                
+                !dataRangeStr := formatString("Q21:Q44");
+                dataRangeStr := P_ChinaSAPColumn + P_ChinaSAPColumnStartRow + ":" + P_ChinaSAPColumn + "100";
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawChinaListofSAP, Range:dataRangeStr, Mode:'replace');
+                
+                !dataRangeStr := formatString("Q21:Q34");
+                dataRangeStr := P_ChinaSAPColumn + P_ChinaSAPColumnVLOCStartRow + ":" + P_ChinaSAPColumn + P_ChinaSAPColumnVLOCEndRow;
+                SpreadSheet::RetrieveSet(Workbook:P_FileName, Set:S_RawChinaVlocListofSAP, Range:dataRangeStr, Mode:'replace');
+                
+                Spreadsheet::CloseWorkbook(P_FileName, 0);
+            }
+            StringParameter P_FileName;
+            Parameter numRows;
+            Parameter numColumns;
+            StringParameter dataRangeStr;
+            StringParameter rowRangeStr;
+            StringParameter columnRangeStr;
+            StringParameter P_ChinaQuotaDataFile;
+            StringParameter P_ChinaPreAllocationDataFile;
+            StringParameter P_ChinaInitialAlloactionDataFile;
+            StringParameter P_ChinaVLOCSheet;
+            StringParameter P_ChinaSAPColumn;
+            StringParameter P_ChinaSAPColumnStartRow;
+            StringParameter P_ChinaSAPColumnVLOCStartRow;
+            StringParameter P_ChinaSAPColumnVLOCEndRow;
+        }
+        Procedure ChinaReadData_v1 {
             Body: {
                 !!! Read China data (including master data)
                 
@@ -3612,6 +4569,7 @@ Model Main_RioTintoSalesScheduling {
                 		P_ChinaShipmentETA(sh) := P_ChinaShipmentPFETA(sh);
                 		P_ChinaShipmentStart(sh) := P_ChinaShipmentPFStart(sh);
                 		P_ChinaShipmentEnd(sh) := P_ChinaShipmentPFEnd(sh);
+                		P_ChinaShipmentEndTimeString(sh) := P_ChinaShipmentPFEndTimeString(sh);
                 
                 		P_ChinaShipmentWeek(sh) := P_ChinaShipmentPFWeek(sh);
                 
@@ -3630,6 +4588,7 @@ Model Main_RioTintoSalesScheduling {
                 		P_ChinaShipmentETA(sh) := P_ChinaShipmentCLAETA(sh);
                 		P_ChinaShipmentStart(sh) := P_ChinaShipmentCLAStart(sh);
                 		P_ChinaShipmentEnd(sh) := P_ChinaShipmentCLAEnd(sh);
+                		P_ChinaShipmentEndTimeString(sh) := P_ChinaShipmentCLAEndTimeString(sh);
                 
                 		P_ChinaShipmentWeek(sh) := P_ChinaShipmentCLAWeek(sh);
                 
@@ -3648,6 +4607,17 @@ Model Main_RioTintoSalesScheduling {
                 !	P_ChinaShipmentWeek(shcla) := P_ChinaShipmentCLAWeek(shcla);
                 !endfor;
                 
+                
+                
+                empty S_ChinaCustomer, S_ChinaTrader;
+                for (de) do
+                	if(FindString(P_ChinaContractType(de), "Trader")) then
+                		S_ChinaTrader := S_ChinaTrader + P_ChinaParentBuyer(de);
+                	else
+                		S_ChinaCustomer := S_ChinaCustomer + P_ChinaParentBuyer(de);
+                	endif;
+                endfor;
+                
                 !for (de, pd) do
                 !	Block
                 !		P_ChinaDestinationDemand(de, pd) := val(P_ChinaDestinationDemandString(de, pd));
@@ -3655,20 +4625,33 @@ Model Main_RioTintoSalesScheduling {
                 !	Endblock;
                 !endfor;
                 
-                for (de, pd) do
-                	P_FirstLetter := SubString(P_ChinaDestinationDemandString(de, pd), 1, 1);
-                	if(P_FirstLetter = '0' or P_FirstLetter = '1' or P_FirstLetter = '2' or P_FirstLetter = '3' or P_FirstLetter = '4' or
-                	   P_FirstLetter = '5' or P_FirstLetter = '6' or P_FirstLetter = '7' or P_FirstLetter = '8' or P_FirstLetter = '9') then
-                		P_ChinaDestinationDemand(de, pd) := val(P_ChinaDestinationDemandString(de, pd));
-                	elseif (P_FirstLetter <> '') then 
-                		P_FirstLetter := SubString(P_ChinaDestinationDemandString(de, pd), 1, 1);
-                	endif;
-                endfor;
+                !for (de, pd) do
+                !	P_FirstLetter := SubString(P_ChinaDestinationDemandString(de, pd), 1, 1);
+                !	if(P_FirstLetter = '0' or P_FirstLetter = '1' or P_FirstLetter = '2' or P_FirstLetter = '3' or P_FirstLetter = '4' or
+                !	   P_FirstLetter = '5' or P_FirstLetter = '6' or P_FirstLetter = '7' or P_FirstLetter = '8' or P_FirstLetter = '9') then
+                !		P_ChinaDestinationDemand(de, pd) := val(P_ChinaDestinationDemandString(de, pd));
+                !	elseif (P_FirstLetter <> '') then 
+                !		P_FirstLetter := SubString(P_ChinaDestinationDemandString(de, pd), 1, 1);
+                !	endif;
+                !endfor;
                 
-                P_ChinaBatchSize := 10000;
-                for (de, pd) do
-                	P_ChinaDestinationDemand(de, pd) := Ceil(P_ChinaDestinationDemand(de, pd) / P_ChinaBatchSize) * P_ChinaBatchSize;
-                endfor;
+                empty P_ChinaDestinationDemand;
+                P_ChinaDestinationDemand(de, pd) := P_ChinaDestinationDemand(de, pd)
+                				    + sum(se, P_RawChinaDestinationDemand(de, se, pd));
+                
+                !P_ChinaBatchSize := 10000;
+                P_ChinaBatchSize := 5000;
+                !for (de, pd) do
+                !	P_ChinaDestinationDemand(de, pd) := Ceil(P_ChinaDestinationDemand(de, pd) / P_ChinaBatchSize) * P_ChinaBatchSize;
+                !endfor;
+                
+                
+                
+                empty P_ChinaSalesEntityTargetedQuantity;
+                P_ChinaSalesEntityTargetedQuantity(se, pd) := sum(de, P_RawChinaDestinationDemand(de, se, pd));
+                
+                empty P_ChinaPrefixedSalesEntity;
+                P_ChinaPrefixedSalesEntity(de, pd) := first(se | P_RawChinaDestinationDemand(de, se, pd));
             }
             ElementParameter err {
                 Range: errh::PendingErrors;
@@ -3706,6 +4689,11 @@ Model Main_RioTintoSalesScheduling {
                 !P_JKTBNoLaycanTierLocationCustomer(1, 'CLB', 'Baosteel') := 1;
                 P_JKTBNoLaycanTierLocationProduct(1,'DA','PB-L') := 1;
                 P_JKTBNoLaycanTierLocationProduct(1,'DA','PB-F') := 1;
+                P_JKTBNoLaycanTierLocationProduct(1,'CLA','PB-L') := 1;
+                P_JKTBNoLaycanTierLocationProduct(1,'CLA','PB-F') := 1;
+                P_JKTBNoLaycanTierLocationProduct(1,'CLB','PB-L') := 1;
+                P_JKTBNoLaycanTierLocationProduct(1,'CLB','PB-F') := 1;
+                P_JKTBExceptionCustomer := 'Baosteel';
                 !P_JKTBNoLaycanTierLocationProduct(2,'DA','PB-L') := 1;
                 !P_JKTBNoLaycanTierLocationProduct(2,'DA','PB-F') := 1;
                 
@@ -3853,6 +4841,15 @@ Model Main_RioTintoSalesScheduling {
                 	P_JKTBContractQuantityAllSE(P_JKTBContractProduct(jct)) := 
                 	P_JKTBContractQuantityAllSE(P_JKTBContractProduct(jct)) + P_JKTBContractQuantity(jct);
                 endfor;
+                
+                empty S_JKTBAllowedSalesEntity;
+                !for (jct | P_JKTBContractEndDate(jct) >= P_JKTBPlanningEndDate 
+                !           and P_JKTBContractStartDate(jct) <= P_JKTBPlanningStartDate) do
+                for (jct) do
+                	S_JKTBAllowedSalesEntity(P_JKTBContractCustomer(jct), P_JKTBContractProduct(jct)) := 
+                	S_JKTBAllowedSalesEntity(P_JKTBContractCustomer(jct), P_JKTBContractProduct(jct)) + 
+                	P_JKTBContractSalesEntity(jct);
+                endfor;
             }
         }
         Section JKTBModel {
@@ -3916,6 +4913,13 @@ Model Main_RioTintoSalesScheduling {
                     IndexDomain: (lt,lo,pd);
                     Range: binary;
                 }
+                ElementParameter P_JKTBExceptionCustomer {
+                    Range: S_JKTBCustomer;
+                }
+                Set S_JKTBAllowedSalesEntity {
+                    IndexDomain: (jcs, pd);
+                    SubsetOf: S_SalesEntity;
+                }
                 Parameter P_JKTBBigM;
             }
             DeclarationSection JKTBDerivedSetAndParameters {
@@ -3971,7 +4975,7 @@ Model Main_RioTintoSalesScheduling {
                     Range: binary;
                 }
                 Variable V_JKTBNominationProductSalesEntity {
-                    IndexDomain: (jn,pd,se) | ((jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split) and P_JKTBDemand(jn, pd) and P_SalesEntityProductPair(se, pd));
+                    IndexDomain: (jn,pd,se) | ((jn in S_JKTBNomination_One or jn in S_JKTBNomination_Split) and P_JKTBDemand(jn, pd) and P_SalesEntityProductPair(se, pd) and se in S_JKTBAllowedSalesEntity(P_JKTBCustomer(jn), pd));
                     Range: binary;
                 }
                 Variable V_JKTBNegativeBalance {
@@ -4100,9 +5104,11 @@ Model Main_RioTintoSalesScheduling {
                         
                         sum((jno, dt) | P_JKTBDemand(jno, pd) > 0 and P_JKTBLaycanTier(dt - P_JKTBETAAssumptionNew(jno) - P_JKTBLoadEndAssumptionNew(jno)) = lt
                         		and P_JKTBFixedLoadEndDateForNomination(jno) <> dt
+                        		and P_JKTBCustomer(jno) <> P_JKTBExceptionCustomer
                             , V_JKTBNominationSchedule(jno, dt, lo))
                         + sum((jns, dt) | P_JKTBDemand(jns, pd) > 0 and P_JKTBLaycanTier(dt - P_JKTBETAAssumptionNew(jns) - P_JKTBLoadEndAssumptionNew(jns)) = lt
                         		and P_JKTBFixedLoadEndDateForNomination(jns) <> dt
+                        		and P_JKTBCustomer(jns) <> P_JKTBExceptionCustomer
                             , V_JKTBNominationProductSchedule(jns, pd, dt, lo))
                         = 0
                     }
@@ -4339,7 +5345,7 @@ Model Main_RioTintoSalesScheduling {
                 
                 S_ChinaChannel := S_ChinaChannel + 'ChinaCustomer';
                 S_ChinaChannel := S_ChinaChannel + 'Trader';
-                S_ChinaChannel := S_ChinaChannel + 'Flex';
+                !S_ChinaChannel := S_ChinaChannel + 'Flex';
                 S_ChinaChannel := S_ChinaChannel + 'Spot';
                 S_ChinaChannel := S_ChinaChannel + 'Contingency';
                 
@@ -4350,11 +5356,14 @@ Model Main_RioTintoSalesScheduling {
                 		P_ChinaChannelOfDestination(de) := 'Trader';
                 	endif;
                 endfor;
-                P_ChinaChannelOfDestination('160') := 'Flex';
+                !P_ChinaChannelOfDestination('160') := 'Flex';
                 P_ChinaChannelOfDestination('161') := 'Spot';
                 P_ChinaChannelOfDestination('162') := 'Contingency';
                 
-                P_ChinaPlanningCutOffDate := '01/08/2018';
+                !P_ChinaPlanningCutOffDate := '1/11/2018';!!!
+                P_ChinaPlanningCutOffTimeString := '2018-11-1 7:00:00';
+                P_ChinaPlanningCutOffTimeStringStart := '2018-10-1 7:00:00';
+                
                 P_ChinaLaycanStartVlocAssumption := 0;
                 P_ChinaLaycanStartGeneralAssumption := 3;
                 P_ChinaLaycanLengthAssumption := 9;
@@ -4367,8 +5376,8 @@ Model Main_RioTintoSalesScheduling {
                 P_ChinaStemVarianceByWeekPenalty := 100;
                 P_ChinaLaycanTierPercentageVariationPentalty := 1;
                 P_ChinaNorthSouthVariationPenalty := 1;
-                P_ChinaDestinationDemandSlackPenalty := 100;
-                P_ChinaShipmentCapacitySlackPenalty := 100;
+                P_ChinaDestinationDemandSlackPenalty := 10;
+                P_ChinaShipmentCapacitySlackPenalty := 10;
                 
                 !P_ChinaSalesEntityTargetedQuantity
                 !P_ChinaPrefixedSalesEntity
@@ -4376,30 +5385,53 @@ Model Main_RioTintoSalesScheduling {
                 
                 P_ChinaPreferedLancanTierPercentage('ChinaCustomer', 1) := 0.35;
                 P_ChinaPreferedLancanTierPercentage('Trader', 1) := 0.25;
-                P_ChinaPreferedLancanTierPercentage('Flex', 1) := 0.1;
-                P_ChinaPreferedLancanTierPercentage('Spot', 1) := 0.2;
+                !P_ChinaPreferedLancanTierPercentage('Flex', 1) := 0.1;
+                P_ChinaPreferedLancanTierPercentage('Spot', 1) := 0.3;
                 P_ChinaPreferedLancanTierPercentage('Contingency', 1) := 0.1;
                 
                 P_ChinaPreferedLancanTierPercentage('ChinaCustomer', 2) := 0.35;
                 P_ChinaPreferedLancanTierPercentage('Trader', 2) := 0.25;
-                P_ChinaPreferedLancanTierPercentage('Flex', 2) := 0.1;
-                P_ChinaPreferedLancanTierPercentage('Spot', 2) := 0.2;
+                !P_ChinaPreferedLancanTierPercentage('Flex', 2) := 0.1;
+                P_ChinaPreferedLancanTierPercentage('Spot', 2) := 0.3;
                 P_ChinaPreferedLancanTierPercentage('Contingency', 2) := 0.1;
                 
                 P_ChinaPreferedLancanTierPercentage('ChinaCustomer', 3) := 0.35;
                 P_ChinaPreferedLancanTierPercentage('Trader', 3) := 0.25;
-                P_ChinaPreferedLancanTierPercentage('Flex', 3) := 0.1;
-                P_ChinaPreferedLancanTierPercentage('Spot', 3) := 0.2;
+                !P_ChinaPreferedLancanTierPercentage('Flex', 3) := 0.1;
+                P_ChinaPreferedLancanTierPercentage('Spot', 3) := 0.3;
                 P_ChinaPreferedLancanTierPercentage('Contingency', 3) := 0.1;
                 
                 P_ChinaPreferedLancanTierPercentage('ChinaCustomer', 4) := 0.35;
                 P_ChinaPreferedLancanTierPercentage('Trader', 4) := 0.25;
-                P_ChinaPreferedLancanTierPercentage('Flex', 4) := 0.1;
-                P_ChinaPreferedLancanTierPercentage('Spot', 4) := 0.2;
+                !P_ChinaPreferedLancanTierPercentage('Flex', 4) := 0.1;
+                P_ChinaPreferedLancanTierPercentage('Spot', 4) := 0.3;
                 P_ChinaPreferedLancanTierPercentage('Contingency', 4) := 0.1;
                 
+                
+                
+                for(sh | P_ChinaShipmentEndTimeString(sh)) do
+                	P_ChinaTimeCompareNumber1(sh) := StringToMoment
+                	(
+                		P_ChinaTimeFormat,
+                		[second],
+                		P_ChinaPlanningCutOffTimeString, ! (input) a string expression
+                		P_ChinaShipmentEndTimeString(sh) ! (input) a string expression
+                	);
+                
+                	P_ChinaTimeCompareNumber2(sh) := StringToMoment
+                	(
+                		P_ChinaTimeFormat,
+                		[second],
+                		P_ChinaPlanningCutOffTimeStringStart, ! (input) a string expression
+                		P_ChinaShipmentEndTimeString(sh) ! (input) a string expression
+                	);
+                endfor;
+                
                 for(sh | P_RawChinaShipmentMarket(sh) = 'China' and P_RawChinaShipmentBuyer(sh) <> 'Baoshan Iron & Steel Co., Ltd') do
-                	if (P_RawChinaShipmentSAPNumber(sh) < 0 and P_ChinaShipmentEnd(sh) < P_ChinaPlanningCutOffDate) then
+                	!if (P_RawChinaShipmentSAPNumber(sh) < 0 and P_ChinaShipmentEnd(sh) < P_ChinaPlanningCutOffDate) then
+                	if (P_RawChinaShipmentSAPNumber(sh) < 0
+                	    and P_ChinaTimeCompareNumber1(sh) < 0
+                	    and P_ChinaTimeCompareNumber2(sh) >= 0) then
                 		S_ChinaShipmentInScope := S_ChinaShipmentInScope + sh;
                 	endif;
                 
@@ -4468,7 +5500,7 @@ Model Main_RioTintoSalesScheduling {
                 for (ccs, lt) do
                 	if(P_ChinaCustomerTier(ccs) = 1) then
                 		P_ChinaCustomerLaycanTierPenalty(ccs, lt) := P_ChinaBasePenalty * lt;
-                	elseif (P_ChinaCustomerTier(ccs) = 5) then
+                	elseif (P_ChinaCustomerTier(ccs) >= 4) then
                 		P_ChinaCustomerLaycanTierPenalty(ccs, lt) := P_ChinaBasePenalty * (5 - lt);
                 	endif;
                 endfor;
@@ -4481,9 +5513,11 @@ Model Main_RioTintoSalesScheduling {
                 		break;
                 	endfor;
                 endfor;
-                P_IsShipmentValidForDestination(shins, de) | (P_ChinaChannelOfDestination(de) = 'Flex' or  
-                	 					      P_ChinaChannelOfDestination(de) = 'Spot' or
-                	    					      P_ChinaChannelOfDestination(de) = 'Contingency') := 1;
+                !P_IsShipmentValidForDestination(shins, de) | (P_ChinaChannelOfDestination(de) = 'Flex' or  
+                !	 					      P_ChinaChannelOfDestination(de) = 'Spot' or
+                !	    					      P_ChinaChannelOfDestination(de) = 'Contingency') := 1;
+                P_IsShipmentValidForDestination(shins, de) | (P_ChinaChannelOfDestination(de) = 'Spot' or
+                	    					P_ChinaChannelOfDestination(de) = 'Contingency') := 1;
                 
                 empty P_numberOfProductInShipment;
                 for((shins, pd) | P_ChinaShipmentInScopeStem(shins, pd)) do
@@ -4495,90 +5529,20 @@ Model Main_RioTintoSalesScheduling {
                 	P_ChinaQuota(pd, wk) := sum(shins | P_ChinaShipmentWeek(shins) = wk, P_ChinaShipmentInScopeStem(shins, pd));
                 !endfor;
                 
+                empty P_ChinaNumberOfRequestForParentBuyer;
+                for(de | sum(pd, P_ChinaDestinationDemand(de, pd))) do
+                	P_ChinaNumberOfRequestForParentBuyer(P_ChinaParentBuyer(de)) := 
+                	P_ChinaNumberOfRequestForParentBuyer(P_ChinaParentBuyer(de)) + 1; 
+                endfor;
                 
                 
                 
-                !!P_JKTBLaycanStartLoadEndGap := P_JKTBETAAssumption + P_JKTBLoadEndAssumption;
-                !P_JKTBLaycanStartLoadEndGap := 7;
-                !for (jn) do
-                !	if (P_JKTBLaycanStartLoadEndGap < P_JKTBETAAssumptionNew(jn) + P_JKTBLoadEndAssumptionNew(jn)) then
-                !		P_JKTBLaycanStartLoadEndGap := P_JKTBETAAssumptionNew(jn) + P_JKTBLoadEndAssumptionNew(jn);
-                !	endif;
-                !endfor;
-                !
-                !empty P_JKTBLaycanTier;
-                !for (dt | dt >= P_JKTBPlanningStartDate and dt <= P_JKTBPlanningEndDate + P_JKTBLaycanStartLoadEndGap) do
-                !	if (TimeslotCharacteristic(dt, 'monthday') >= 25) then
-                !		P_JKTBLaycanTier(dt) := 1;
-                !	elseif (TimeslotCharacteristic(dt, 'monthday') >= 1 and TimeslotCharacteristic(dt, 'monthday') <= 9) then
-                !		P_JKTBLaycanTier(dt) := 2;
-                !	elseif (TimeslotCharacteristic(dt, 'monthday') >= 10 and TimeslotCharacteristic(dt, 'monthday') <= 15) then
-                !		P_JKTBLaycanTier(dt) := 3;
-                !	elseif (TimeslotCharacteristic(dt, 'monthday') >= 16 and TimeslotCharacteristic(dt, 'monthday') <= 24) then
-                !		P_JKTBLaycanTier(dt) := 4;
-                !	endif;
-                !endfor;
-                !
                 !empty P_WeekOfDate;
                 !for (dt | dt >= P_JKTBPlanningStartDate and dt <= P_JKTBPlanningEndDate + P_JKTBLaycanStartLoadEndGap) do
                 !	for(wk | P_WeekStartDate(wk) in S_CalendarDate and P_WeekEndDate(wk) in S_CalendarDate) do
                 !		if (dt >= P_WeekStartDate(wk) and dt <= P_WeekEndDate(wk) - 1) then
                 !			P_WeekOfDate(dt) := wk;
                 !			break;
-                !		endif;
-                !	endfor;
-                !endfor;
-                !
-                !empty S_JKTBNomination_One, S_JKTBNomination_Split;
-                !P_JKTBTem := 0;
-                !for (jn | P_JKTBLaycanStart(jn) >= P_JKTBPlanningStartDate and P_JKTBLaycanStart(jn) <= P_JKTBPlanningEndDate) do
-                !	for (lo) do
-                !		P_JKTBTem := 1;
-                !		for (pd | P_JKTBDemand(jn, pd)) do
-                !			if (P_LocationProductPair(lo, pd) = 0) then
-                !				P_JKTBTem := 0;
-                !				break;
-                !			endif;
-                !		endfor;
-                !
-                !		if (P_JKTBTem = 1) then
-                !			break;
-                !		endif;
-                !	endfor;
-                !
-                !	if (P_JKTBTem = 1) then
-                !		S_JKTBNomination_One := S_JKTBNomination_One + jn;
-                !	else
-                !		S_JKTBNomination_Split := S_JKTBNomination_Split + jn;
-                !	endif;
-                !endfor;
-                !
-                !empty P_JKTBIfNominationLocation;
-                !P_JKTBIfNominationLocation(jn, lo) := 0;
-                !P_JKTBTem := 0;
-                !for (jn | P_JKTBLaycanStart(jn) >= P_JKTBPlanningStartDate and P_JKTBLaycanStart(jn) <= P_JKTBPlanningEndDate) do
-                !	for (lo) do
-                !		P_JKTBTem := 1;
-                !		for (pd | P_JKTBDemand(jn, pd)) do
-                !			if (P_LocationProductPair(lo, pd) = 0) then
-                !				P_JKTBTem := 0;
-                !				break;
-                !			endif;
-                !		endfor;
-                !
-                !		if (P_JKTBTem = 1) then
-                !			P_JKTBIfNominationLocation(jn, lo) := 1;
-                !		endif;
-                !	endfor;
-                !endfor;
-                !
-                !empty P_JKTBNominationNonPreferredDayPenalty;
-                !for (jn | P_JKTBLaycanStart(jn) >= P_JKTBPlanningStartDate and P_JKTBLaycanStart(jn) <= P_JKTBPlanningEndDate) do
-                !	for(dt | dt >= P_JKTBPlanningStartDate and dt <= P_JKTBPlanningEndDate + P_JKTBLaycanStartLoadEndGap) do 
-                !		if (dt >= P_JKTBPreferredLoadEndDate(jn)) then
-                !			P_JKTBNominationNonPreferredDayPenalty(jn, dt) := P_JKTBPenaltyBase * (dt - P_JKTBPreferredLoadEndDate(jn));
-                !		else
-                !			P_JKTBNominationNonPreferredDayPenalty(jn, dt) := P_JKTBPenaltyBase * (P_JKTBPreferredLoadEndDate(jn) - dt);
                 !		endif;
                 !	endfor;
                 !endfor;
@@ -4599,16 +5563,19 @@ Model Main_RioTintoSalesScheduling {
                 
                 P_ChinaFinalShipmentStem(shins, pd) := sum(de | P_ChinaChannelOfDestination(de), P_ChinaShipmentProductDestinationQuantity(shins, de, pd))
                 				       * P_ChinaBatchSize;
+                P_ChinaFinalShipmentStemByDe(de, pd) := sum(shins | P_ChinaChannelOfDestination(de), P_ChinaShipmentProductDestinationQuantity(shins, de, pd))
+                				       * P_ChinaBatchSize;
                 
-                for ((shins, de) | P_ChinaShipmentDestination(shins, de)) do
-                	P_ChinaDestinationOfShipment(shins) := de;
-                endfor;
+                !for ((shins, de) | P_ChinaShipmentDestination(shins, de)) do
+                !	P_ChinaDestinationOfShipment(shins) := de;
+                !endfor;
+                P_ChinaDestinationOfShipment(shins) := first(de | P_ChinaShipmentDestination(shins, de));
             }
         }
         Section ChinaModel {
             DeclarationSection ChinaModelSetAndParameters {
                 Parameter p_ChinaMaxShipCapacity {
-                    Definition: 17;
+                    Definition: 300000 / P_ChinaBatchSize;
                 }
                 Set S_ChinaShipmentInScope {
                     SubsetOf: S_ChinaShipment;
@@ -4674,10 +5641,24 @@ Model Main_RioTintoSalesScheduling {
                         ! sum(shins | P_ChinaShipmentWeek(shins) = wk, P_ChinaShipmentInScopeStem(shins, pd));
                     }
                 }
+                Parameter P_ChinaNumberOfRequestForParentBuyer {
+                    IndexDomain: cpb;
+                }
             }
             DeclarationSection ChinaUserSetting {
                 ElementParameter P_ChinaPlanningCutOffDate {
                     Range: S_CalendarDate;
+                }
+                StringParameter P_ChinaTimeFormat {
+                    Definition: "%c%y-%m-%d %H:%M:%S";
+                }
+                StringParameter P_ChinaPlanningCutOffTimeString;
+                StringParameter P_ChinaPlanningCutOffTimeStringStart;
+                Parameter P_ChinaTimeCompareNumber1 {
+                    IndexDomain: sh;
+                }
+                Parameter P_ChinaTimeCompareNumber2 {
+                    IndexDomain: sh;
                 }
                 Parameter P_ChinaLaycanStartVlocAssumption;
                 Parameter P_ChinaLaycanStartGeneralAssumption;
@@ -4697,9 +5678,12 @@ Model Main_RioTintoSalesScheduling {
             }
             DeclarationSection ChinaMainModelDecisionVariables {
                 Variable V_ChinaShipmentProductDestinationQuantity {
-                    IndexDomain: (shins,de,pd) | (P_ChinaChannelOfDestination(de) and P_ChinaShipmentInScopeStem(shins, pd) > 0 and P_ChinaDestinationDemand(de, pd) > 0);
+                    IndexDomain: (shins,de,pd) | (P_ChinaChannelOfDestination(de) and P_ChinaShipmentInScopeStem(shins, pd) > 0);
                     Range: {
                         {0..p_ChinaMaxShipCapacity}
+                    }
+                    Definition: {
+                        !  and P_ChinaDestinationDemand(de, pd) > 0
                     }
                 }
                 Variable V_ChinaShipmentProduct {
@@ -4709,6 +5693,9 @@ Model Main_RioTintoSalesScheduling {
                 Variable V_ChinaShipmentDestination {
                     IndexDomain: (shins,de) | P_ChinaChannelOfDestination(de) and P_IsShipmentValidForDestination(shins,de);
                     Range: binary;
+                    Definition: {
+                        !
+                    }
                 }
                 Variable V_ChinaStemVariance {
                     IndexDomain: (shins,pd) | P_ChinaShipmentInScopeStem(shins, pd) > 0 and P_numberOfProductInShipment(shins) > 1;
@@ -4751,6 +5738,10 @@ Model Main_RioTintoSalesScheduling {
                 Constraint C_ChinaOneDestinationPerShipment {
                     IndexDomain: shins;
                     Definition: sum(de, V_ChinaShipmentDestination(shins, de)) = 1;
+                }
+                Constraint C_ChinaOneShipmentPerDestinationWithDemand {
+                    IndexDomain: de | (P_ChinaChannelOfDestination(de) and sum(pd, P_ChinaDestinationDemand(de, pd)) > 0);
+                    Definition: sum(shins, V_ChinaShipmentDestination(shins, de)) <= 1;
                 }
                 Constraint C_ChinaLinkShipmentDestinationAndQuantity1 {
                     IndexDomain: (shins, de) | P_ChinaChannelOfDestination(de);
@@ -4876,6 +5867,47 @@ Model Main_RioTintoSalesScheduling {
                         			    V_ChinaShipmentDestination(shins, de))
                     }
                 }
+                Constraint C_ChinaCustomerEvenlyDistribution11 {
+                    IndexDomain: cpb | P_ChinaNumberOfRequestForParentBuyer(cpb) >= 2;
+                    Definition: {
+                        sum((shins, de) | ((P_ChinaShipmentInScopeLaycanTier(shins, 1) = 1 
+                        		  or P_ChinaShipmentInScopeLaycanTier(shins, 2) = 1) 
+                        		  and
+                        		  P_ChinaParentBuyer(de) = cpb)
+                        		, V_ChinaShipmentDestination(shins, de))
+                        <= ceil(P_ChinaNumberOfRequestForParentBuyer(cpb) / 2);
+                    }
+                }
+                Constraint C_ChinaCustomerEvenlyDistribution12 {
+                    IndexDomain: cpb | P_ChinaNumberOfRequestForParentBuyer(cpb) >= 2;
+                    Definition: {
+                        sum((shins, de) | ((P_ChinaShipmentInScopeLaycanTier(shins, 3) = 1 
+                        		  or P_ChinaShipmentInScopeLaycanTier(shins, 4) = 1) 
+                        		  and
+                        		  P_ChinaParentBuyer(de) = cpb)
+                        		, V_ChinaShipmentDestination(shins, de))
+                        <= ceil(P_ChinaNumberOfRequestForParentBuyer(cpb) / 2);
+                    }
+                }
+                Constraint C_ChinaCustomerEvenlyDistribution13 {
+                    IndexDomain: cpb | P_ChinaNumberOfRequestForParentBuyer(cpb) >= 2;
+                    Definition: {
+                        sum((shins, de) | ((P_ChinaShipmentInScopeLaycanTier(shins, 2) = 1 
+                        		  or P_ChinaShipmentInScopeLaycanTier(shins, 3) = 1) 
+                        		  and
+                        		  P_ChinaParentBuyer(de) = cpb)
+                        		, V_ChinaShipmentDestination(shins, de))
+                        <= ceil(P_ChinaNumberOfRequestForParentBuyer(cpb) / 2);
+                    }
+                }
+                Constraint C_ChinaCustomerEvenlyDistribution2 {
+                    IndexDomain: (cpb, lt) | P_ChinaNumberOfRequestForParentBuyer(cpb) >= 3;
+                    Definition: {
+                        sum((shins, de) | P_ChinaShipmentInScopeLaycanTier(shins, lt) = 1 and
+                        		  P_ChinaParentBuyer(de) = cpb
+                        		, V_ChinaShipmentDestination(shins, de)) <= ceil(P_ChinaNumberOfRequestForParentBuyer(cpb) / 4);
+                    }
+                }
                 Constraint C_ChinaSumStemVariance {
                     Definition: V_ChinaTotalStemVariance = sum((shins, pd), V_ChinaStemVariance(shins, pd));
                 }
@@ -4916,6 +5948,8 @@ Model Main_RioTintoSalesScheduling {
                         		       + V_ChinaTotalCustomerTierPenalty
                         		       + P_ChinaDestinationDemandSlackPenalty * V_ChinaTotalDestinationDemandSlack
                         		       + P_ChinaShipmentCapacitySlackPenalty * V_ChinaTotalShipmentCapacitySlack
+                        		       !+ sum((shins, de), V_ChinaShipmentDestination(shins, de)) *10000000
+                        		       !+ sum((shins, de) | sum(pd, P_ChinaDestinationDemand(de, pd)) > 0, V_ChinaShipmentDestination(shins, de)) * 1000
                     }
                 }
             }
@@ -4982,6 +6016,7 @@ Model Main_RioTintoSalesScheduling {
                         data
                         {
                         C_ChinaOneDestinationPerShipment
+                        , C_ChinaOneShipmentPerDestinationWithDemand
                         , C_ChinaLinkShipmentDestinationAndQuantity1
                         , C_ChinaLinkShipmentDestinationAndQuantity2
                         , C_ChinaLinkShipmentProductAndQuantity1
@@ -4999,6 +6034,10 @@ Model Main_RioTintoSalesScheduling {
                         , C_ChinaLaycanTierPercentageConstraint2
                         , C_ChinaNorthSouthBalanceConstraint1
                         , C_ChinaNorthSouthBalanceConstraint2
+                        , C_ChinaCustomerEvenlyDistribution11
+                        , C_ChinaCustomerEvenlyDistribution12
+                        , C_ChinaCustomerEvenlyDistribution13
+                        , C_ChinaCustomerEvenlyDistribution2
                         , C_ChinaSumStemVariance
                         , C_ChinaSumStemChange
                         , C_ChinaSumStemVarianceByWeek
@@ -5080,6 +6119,9 @@ Model Main_RioTintoSalesScheduling {
                 Parameter P_ChinaFinalShipmentStem {
                     IndexDomain: (shins,pd);
                 }
+                Parameter P_ChinaFinalShipmentStemByDe {
+                    IndexDomain: (de,pd);
+                }
                 ElementParameter P_ChinaDestinationOfShipment {
                     IndexDomain: shins;
                     Range: S_ChinaDestination;
@@ -5101,7 +6143,7 @@ Model Main_RioTintoSalesScheduling {
             }
             DeclarationSection ChinaSalesEntityModelConstraints {
                 Constraint C_ChinaPrefixedSalesEntity {
-                    IndexDomain: (shins, pd, se) | P_ChinaShipmentInScopeStem(shins, pd) > 0 and P_SalesEntityProductPair(se, pd) and P_ChinaShipmentProductDestinationQuantity(shins, P_ChinaDestinationOfShipment(shins), pd) and P_ChinaPrefixedSalesEntity(P_ChinaDestinationOfShipment(shins)) = se;
+                    IndexDomain: (shins, pd, se) | P_ChinaShipmentInScopeStem(shins, pd) > 0 and P_SalesEntityProductPair(se, pd) and P_ChinaShipmentProductDestinationQuantity(shins, P_ChinaDestinationOfShipment(shins), pd) and P_ChinaPrefixedSalesEntity(P_ChinaDestinationOfShipment(shins), pd) = se;
                     Definition: V_ChinaSalesEntity(shins, pd, se) = 1;
                 }
                 Constraint C_ChinaOneSalesEntityPerShipmentPerProduct {

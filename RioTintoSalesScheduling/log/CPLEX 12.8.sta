@@ -1,0 +1,337 @@
+
+Solve problem 'M_JKTBModel' with 451 rows, 2014 columns (0 binaries, 24 generals), and 2518 nonzeros.
+Found incumbent of value 616969.012586 after 0.03 sec. (0.12 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 451 rows and 2014 columns.
+All rows and columns eliminated.
+Presolve time = 0.03 sec. (0.67 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (0.86 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (0.86 ticks)
+
+MIP - Integer optimal solution:  Objective = 6.1696901259e+005
+Solution time = 0.22 sec.  Iterations = 0  Nodes = 0
+
+
+Solve problem 'M_JKTBModel' with 668 rows, 4454 columns (2440 binaries, 24 generals), and 25306 nonzeros.
+Tried aggregator 2 times.
+MIP Presolve eliminated 294 rows and 2105 columns.
+MIP Presolve modified 1097 coefficients.
+Aggregator did 36 substitutions.
+Reduced MIP has 338 rows, 2313 columns, and 13949 nonzeros.
+Reduced MIP has 2206 binaries, 19 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (11.75 ticks)
+Found incumbent of value 3.4849405e+10 after 0.22 sec. (25.67 ticks)
+Probing time = 0.03 sec. (3.93 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 42 rows and 129 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 295 rows, 2183 columns, and 13555 nonzeros.
+Reduced MIP has 2092 binaries, 17 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (7.45 ticks)
+Probing time = 0.00 sec. (3.84 ticks)
+Clique table members: 46.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 0.02 sec. (2.83 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+
+*     0+    0                       4.02078e+08   254511.3874            99.94%
+
+      0     0   3.21775e+07    33   4.02078e+08   3.21775e+07       51   92.00%
+
+*     0+    0                       7.60254e+07   3.21775e+07            57.68%
+
+      0     0   3.49225e+07    11   7.60254e+07      Cuts: 16       66   54.06%
+
+*     0+    0                       4.72096e+07   3.49225e+07            26.03%
+
+      0     0   3.52881e+07    19   4.72096e+07      Cuts: 10       77   25.25%
+
+*     0+    0                       3.70536e+07   3.52881e+07             4.76%
+
+*     0+    0                       3.66372e+07   3.52881e+07             3.68%
+
+      0     0        cutoff         3.66372e+07   3.66372e+07       77    0.00%
+
+Elapsed time = 0.55 sec. (111.05 ticks, tree = 0.01 MB
+, solutions = 7
+)
+
+Implied bound cuts applied:  1
+Flow cuts applied:  8
+Mixed integer rounding cuts applied:  5
+Lift and project cuts applied:  4
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.56 sec. (111.45 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.56 sec. (111.45 ticks)
+
+MIP - Integer optimal solution:  Objective = 3.6637240394e+007
+Solution time = 0.56 sec.  Iterations = 77  Nodes = 0
+
+
+Postsolve problem 'M_JKTBModel' with 668 rows, 4454 columns, and 25306 nonzeros.
+Tried aggregator 1 time.
+LP Presolve eliminated 668 rows and 4454 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.78 ticks)
+
+RMIP - Optimal:  Objective = 3.6637240394e+007
+Solution time = 0.02 sec.  Iterations = 0
+
+
+Solve problem 'M_JKTBModel' with 668 rows, 4380 columns (2366 binaries, 24 generals), and 24744 nonzeros.
+Tried aggregator 2 times.
+MIP Presolve eliminated 322 rows and 2098 columns.
+MIP Presolve modified 618 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 331 rows, 2267 columns, and 13817 nonzeros.
+Reduced MIP has 2164 binaries, 15 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (11.26 ticks)
+Found incumbent of value 3.4848231e+10 after 0.03 sec. (25.12 ticks)
+Probing time = 0.00 sec. (3.94 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 35 rows and 83 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 295 rows, 2183 columns, and 13555 nonzeros.
+Reduced MIP has 2092 binaries, 17 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (7.42 ticks)
+Probing time = 0.00 sec. (3.84 ticks)
+Clique table members: 46.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 0.00 sec. (2.83 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+
+*     0+    0                       4.02081e+08   257617.0878            99.94%
+
+      0     0   3.21806e+07    33   4.02081e+08   3.21806e+07       51   92.00%
+
+*     0+    0                       7.60285e+07   3.21806e+07            57.67%
+
+      0     0   3.49257e+07    11   7.60285e+07      Cuts: 16       66   54.06%
+
+*     0+    0                       4.72127e+07   3.49257e+07            26.02%
+
+      0     0   3.52912e+07    19   4.72127e+07      Cuts: 10       77   25.25%
+
+*     0+    0                       3.70567e+07   3.52912e+07             4.76%
+
+*     0+    0                       3.66403e+07   3.52912e+07             3.68%
+
+      0     0        cutoff         3.66403e+07   3.66403e+07       77    0.00%
+
+Elapsed time = 0.22 sec. (107.45 ticks, tree = 0.01 MB
+, solutions = 7
+)
+
+Implied bound cuts applied:  1
+Flow cuts applied:  8
+Mixed integer rounding cuts applied:  5
+Lift and project cuts applied:  4
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.24 sec. (107.84 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.24 sec. (107.84 ticks)
+
+MIP - Integer optimal solution:  Objective = 3.6640346094e+007
+Solution time = 0.25 sec.  Iterations = 77  Nodes = 0
+
+
+Postsolve problem 'M_JKTBModel' with 668 rows, 4380 columns, and 24744 nonzeros.
+Tried aggregator 1 time.
+LP Presolve eliminated 668 rows and 4380 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.75 ticks)
+
+RMIP - Optimal:  Objective = 3.6640346094e+007
+Solution time = 0.00 sec.  Iterations = 0
+
+
+Solve problem 'M_JKTBModel' with 668 rows, 4380 columns (2366 binaries, 24 generals), and 24744 nonzeros.
+Tried aggregator 2 times.
+MIP Presolve eliminated 366 rows and 2190 columns.
+MIP Presolve modified 32 coefficients.
+Aggregator did 6 substitutions.
+Reduced MIP has 296 rows, 2184 columns, and 13605 nonzeros.
+Reduced MIP has 2092 binaries, 12 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (10.60 ticks)
+Found incumbent of value 3.4846625e+10 after 0.03 sec. (24.38 ticks)
+Probing time = 0.00 sec. (3.92 ticks)
+Tried aggregator 2 times.
+Aggregator did 1 substitutions.
+Reduced MIP has 295 rows, 2183 columns, and 13555 nonzeros.
+Reduced MIP has 2092 binaries, 17 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.36 ticks)
+Probing time = 0.02 sec. (5.08 ticks)
+Clique table members: 46.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 0.00 sec. (2.83 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+
+*     0+    0                       3.48466e+10        0.0000           100.00%
+
+*     0+    0                       3.50791e+09        0.0000           100.00%
+
+*     0+    0                       3.43822e+09        0.0000           100.00%
+
+*     0+    0                       3.42307e+09        0.0000           100.00%
+
+      0     0   3.19230e+07    33   3.42307e+09   3.19230e+07       51   99.07%
+
+*     0+    0                       7.57709e+07   3.19230e+07            57.87%
+
+      0     0   3.46680e+07    11   7.57709e+07      Cuts: 16       66   54.25%
+
+*     0+    0                       4.69551e+07   3.46680e+07            26.17%
+
+      0     0   3.50336e+07    19   4.69551e+07      Cuts: 10       77   25.39%
+
+*     0+    0                       3.67991e+07   3.50336e+07             4.80%
+
+*     0+    0                       3.63827e+07   3.50336e+07             3.71%
+
+      0     0        cutoff         3.63827e+07   3.63827e+07       77    0.00%
+
+Elapsed time = 0.23 sec. (97.92 ticks, tree = 0.01 MB
+, solutions = 9
+)
+
+Implied bound cuts applied:  1
+Flow cuts applied:  7
+Mixed integer rounding cuts applied:  6
+Lift and project cuts applied:  4
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.25 sec. (98.37 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.25 sec. (98.37 ticks)
+
+MIP - Integer optimal solution:  Objective = 3.6382729007e+007
+Solution time = 0.27 sec.  Iterations = 77  Nodes = 0
+
+
+Postsolve problem 'M_JKTBModel' with 668 rows, 4380 columns, and 24744 nonzeros.
+Tried aggregator 1 time.
+LP Presolve eliminated 668 rows and 4380 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.75 ticks)
+
+RMIP - Optimal:  Objective = 3.6382729007e+007
+Solution time = 0.00 sec.  Iterations = 0
+
+
+Solve problem 'M_JKTBModel' with 668 rows, 4380 columns (2366 binaries, 24 generals), and 24744 nonzeros.
+Tried aggregator 2 times.
+MIP Presolve eliminated 322 rows and 2098 columns.
+MIP Presolve modified 618 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 331 rows, 2267 columns, and 13817 nonzeros.
+Reduced MIP has 2164 binaries, 15 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (11.26 ticks)
+Found incumbent of value 3.4848231e+10 after 0.03 sec. (25.12 ticks)
+Probing time = 0.01 sec. (3.94 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 35 rows and 83 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 295 rows, 2183 columns, and 13555 nonzeros.
+Reduced MIP has 2092 binaries, 17 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (7.42 ticks)
+Probing time = 0.00 sec. (3.84 ticks)
+Clique table members: 46.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 0.00 sec. (2.83 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+
+*     0+    0                       4.02081e+08   257617.0878            99.94%
+
+      0     0   3.21806e+07    33   4.02081e+08   3.21806e+07       51   92.00%
+
+*     0+    0                       7.60285e+07   3.21806e+07            57.67%
+
+      0     0   3.49257e+07    11   7.60285e+07      Cuts: 16       66   54.06%
+
+*     0+    0                       4.72127e+07   3.49257e+07            26.02%
+
+      0     0   3.52912e+07    19   4.72127e+07      Cuts: 10       77   25.25%
+
+*     0+    0                       3.70567e+07   3.52912e+07             4.76%
+
+*     0+    0                       3.66403e+07   3.52912e+07             3.68%
+
+      0     0        cutoff         3.66403e+07   3.66403e+07       77    0.00%
+
+Elapsed time = 0.25 sec. (107.45 ticks, tree = 0.01 MB
+, solutions = 7
+)
+
+Implied bound cuts applied:  1
+Flow cuts applied:  8
+Mixed integer rounding cuts applied:  5
+Lift and project cuts applied:  4
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.25 sec. (107.84 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.25 sec. (107.84 ticks)
+
+MIP - Integer optimal solution:  Objective = 3.6640346094e+007
+Solution time = 0.25 sec.  Iterations = 77  Nodes = 0
+
+
+Postsolve problem 'M_JKTBModel' with 668 rows, 4380 columns, and 24744 nonzeros.
+Tried aggregator 1 time.
+LP Presolve eliminated 668 rows and 4380 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.75 ticks)
+
+RMIP - Optimal:  Objective = 3.6640346094e+007
+Solution time = 0.01 sec.  Iterations = 0
+

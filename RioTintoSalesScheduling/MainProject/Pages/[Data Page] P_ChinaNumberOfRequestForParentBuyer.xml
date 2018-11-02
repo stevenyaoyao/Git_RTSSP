@@ -5,7 +5,7 @@
 		<Size Width="600" Height="540" />
 	</PageEditSize>
 	<ProjectUUID>4667591F-41C9-47B8-8164-4BE4BD8059E0</ProjectUUID>
-	<Title>"[Data Page] V_ChinaDestinationDemandSlack"</Title>
+	<Title>"[Data Page] P_ChinaNumberOfRequestForParentBuyer"</Title>
 	<ResizeData>
 		<MainArea Line="FixedFromTop" Value="35">
 			<TopArea Line="FixedFromTop" Value="10" />
@@ -95,25 +95,14 @@
 	<PageObject Type="Pivot Table">
 		<Location top="10" left="10" bottom="530" right="510" />
 		<TabOrder>6</TabOrder>
-		<ObjectUUID>45F27CAF-5208-4D78-A5C0-F665B42BD78C</ObjectUUID>
+		<ObjectUUID>AF684E33-C371-4269-A98C-369C8B23FDF3</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
 		<Border Style="InShadow" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
 		<Contents>
 			<Explicit_Identifier>
-				<Identifier ID="4110">V_ChinaDestinationDemandSlack( de, pd )</Identifier>
+				<Identifier ID="4110">P_ChinaNumberOfRequestForParentBuyer( cpb )</Identifier>
 			</Explicit_Identifier>
 		</Contents>
-		<Indices>
-			<Suffix_Index>
-				<Explicit_Suffix>
-					<Suffix ID="6620">"Level"</Suffix>
-				</Explicit_Suffix>
-				<Explicit_Suffix>
-					<Suffix ID="6620">"basic"</Suffix>
-				</Explicit_Suffix>
-				<Location_in_Initial_View ID="6660">"As Outer Index"</Location_in_Initial_View>
-			</Suffix_Index>
-		</Indices>
 		<General>
 			<Dense_Aggregation_restricts_to_Domain ID="1022">"Yes"</Dense_Aggregation_restricts_to_Domain>
 			<Save_Layout_State>
@@ -151,9 +140,8 @@
 	</PageObject>
 	<UsedReferences>
 		<Model>
-			<Symbol>V_ChinaDestinationDemandSlack</Symbol>
-			<Symbol>pd</Symbol>
-			<Symbol>de</Symbol>
+			<Symbol>cpb</Symbol>
+			<Symbol>P_ChinaNumberOfRequestForParentBuyer</Symbol>
 		</Model>
 	</UsedReferences>
 </Page>

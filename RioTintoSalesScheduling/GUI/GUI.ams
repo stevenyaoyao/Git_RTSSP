@@ -4,6 +4,30 @@ LibraryModule Library_GUI {
     Prefix: gui;
     Interface: data { LibraryInitialization, JKTB_GUI_Startup };
     Section Conditional_Colours {
+        DeclarationSection China {
+            ElementParameter ChinaDemandDifference {
+                IndexDomain: (de,pd);
+                Range: AllColors;
+                Definition: {
+                    if P_ChinaFinalShipmentStemByDe(de, pd) < P_ChinaDestinationDemand(de, pd) then
+                    	'red'
+                    elseif P_ChinaFinalShipmentStemByDe(de, pd) > P_ChinaDestinationDemand(de, pd) then
+                    	'green'
+                    endif;
+                }
+            }
+            ElementParameter ChinaStemDifference {
+                IndexDomain: (shins,pd);
+                Range: AllColors;
+                Definition: {
+                    if P_ChinaShipmentStem(shins, pd) > P_ChinaFinalShipmentStem(shins, pd) then
+                    	'red'
+                    elseif P_ChinaShipmentStem(shins, pd) < P_ChinaFinalShipmentStem(shins, pd)then
+                    	'green'
+                    endif;
+                }
+            }
+        }
         ElementParameter OC_JKTBLaycanDifference {
             IndexDomain: jn;
             Range: AllColors;
@@ -30,7 +54,133 @@ LibraryModule Library_GUI {
         }
     }
     Section calculated_parameters {
+        DeclarationSection China_output_params {
+            Parameter PO_ChinaDemandNotMet {
+                IndexDomain: (de, pd) | (P_ChinaChannelOfDestination(de) and P_ChinaDestinationDemand(de, pd) > 0);
+                Definition: {
+                    P_ChinaDestinationDemand(de, pd)
+                    - sum(shins, V_ChinaShipmentProductDestinationQuantity(shins, de, pd)) * P_ChinaBatchSize
+                }
+            }
+            Parameter PO_CusomerLaycanTiers {
+                IndexDomain: (ccs,lt);
+                Definition: {
+                     sum((shins, de) | P_ChinaChannelOfDestination(de) = 'ChinaCustomer'
+                    							     and P_ChinaParentBuyer(de) = ccs
+                    							     and P_ChinaShipmentInScopeLaycanTier(shins, lt) = 1
+                    					, P_ChinaCustomerLaycanTierPenalty(ccs, lt) * V_ChinaShipmentDestination(shins, de))
+                }
+            }
+            Parameter PO_ChinaCustomerTier {
+                IndexDomain: ccs;
+            }
+            Parameter PO_ChinaSouth {
+                IndexDomain: lt;
+                Definition: {
+                     sum((shins, de, ccs) | P_ChinaChannelOfDestination(de) = 'ChinaCustomer' and P_ChinaParentBuyer(de) = ccs
+                    			  and P_ChinaIsCustomerSouth(ccs) and P_ChinaShipmentInScopeLaycanTier(shins, lt),
+                    			  V_ChinaShipmentDestination(shins, de))
+                }
+            }
+            Parameter PO_ChinaNorth {
+                IndexDomain: lt;
+                Definition: {
+                    sum((shins, de, ccs) | P_ChinaChannelOfDestination(de) = 'ChinaCustomer' and P_ChinaParentBuyer(de) = ccs 
+                       			    and P_ChinaIsCustomerNorth(ccs) and P_ChinaShipmentInScopeLaycanTier(shins, lt),
+                    			    V_ChinaShipmentDestination(shins, de))
+                }
+            }
+            Parameter PO_ChinaNorthPercent {
+                IndexDomain: lt | (PO_ChinaNorth(lt) + PO_ChinaSouth(lt)) > 0;
+                Definition: PO_ChinaNorth(lt) / (PO_ChinaNorth(lt) + PO_ChinaSouth(lt));
+            }
+            Parameter Copy_PO_ChinaNorthPercent {
+                IndexDomain: lt;
+                Definition: PO_ChinaNorth(lt) / (PO_ChinaNorth(lt) + PO_ChinaSouth(lt));
+            }
+            Parameter PO_ChinaLaycanPercentage {
+                IndexDomain: (ch, lt);
+                Definition: {
+                    sum((shins, de) | P_ChinaShipmentInScopeLaycanTier(shins, lt) = 1 and P_ChinaChannelOfDestination(de) = ch, V_ChinaShipmentDestination(shins, de))
+                         / P_ChinaLaycanTierShipments(lt)
+                }
+            }
+            Parameter PO_ChinaLaycanPercentageDelta {
+                IndexDomain: (ch, lt);
+                Definition: PO_ChinaLaycanPercentage(ch, lt) - P_ChinaPreferedLancanTierPercentage(ch, lt);
+            }
+            Parameter PO_ChinaStemChangeByWeek {
+                IndexDomain: (pd,wk);
+                Definition: {
+                    sum((shins, de) | P_ChinaShipmentWeek(shins) = wk, V_ChinaShipmentProductDestinationQuantity(shins, de, pd)) * P_ChinaBatchSize
+                    -
+                    P_ChinaQuota(pd, wk)
+                }
+            }
+            StringParameter PO_ChinaPort {
+                IndexDomain: sh;
+                Definition: {
+                    if(sh >= '1000') then
+                    	"CLA"
+                    else
+                    	"PF"
+                    endif
+                }
+            }
+            StringParameter PO_ChinaContractType {
+                IndexDomain: shins;
+                Definition: {
+                    if(first(de | P_ChinaShipmentDestination(shins, de)) >= '160') then
+                    	P_ChinaChannelOfDestination(first(de | P_ChinaShipmentDestination(shins, de)))
+                    else
+                    	P_ChinaContractType(first(de | P_ChinaShipmentDestination(shins, de)))
+                    endif
+                }
+            }
+            StringParameter PO_ChinaCustomer {
+                IndexDomain: shins;
+                Definition: {
+                    ! Temporarily change the below code to fix compiling error
+                    ! To be updated
+                    if(first(de | P_ChinaShipmentDestination(shins, de)) >= 162) then
+                    	!P_ChinaChannelOfDestination(first(de | P_ChinaShipmentDestination(shins, de)))
+                    	"Contingency"
+                    elseif(first(de | P_ChinaShipmentDestination(shins, de)) >= 161) then
+                    	!P_ChinaChannelOfDestination(first(de | P_ChinaShipmentDestination(shins, de)))
+                    	"Spot"
+                    !elseif(first(de | P_ChinaShipmentDestination(shins, de)) >= 160) then
+                    !	!P_ChinaChannelOfDestination(first(de | P_ChinaShipmentDestination(shins, de)))
+                    !	"Flex"
+                    else
+                    	P_ChinaParentBuyer(first(de | P_ChinaShipmentDestination(shins, de)))
+                    endif
+                }
+            }
+            ElementParameter PO_ChinaLaycanStart {
+                IndexDomain: shins;
+                Range: S_CalendarDate;
+                Definition: P_ChinaShipmentETA(shins);
+            }
+            ElementParameter PO_ChinaSalesEntity {
+                IndexDomain: shins;
+                Range: S_SalesEntity;
+                Definition: first(se | max(pd, P_ChinaSalesEntityAllocation(shins, pd, se)));
+            }
+        }
         DeclarationSection DisplayParameters {
+            ElementParameter GUI_JKTBLaycanEquityPort {
+                Range: S_Location;
+                Default: 'DA';
+            }
+            Parameter O_JKTBLaycanEquity {
+                IndexDomain: (lt,lo, jcs);
+                Definition: {
+                    sum((jno, dt) | P_JKTBCustomer(jno) = jcs and P_JKTBLaycanTier(dt - P_JKTBETAAssumptionNew(jno) - P_JKTBLoadEndAssumptionNew(jno)) = lt, 
+                       V_JKTBNominationSchedule(jno, dt, lo))
+                    + sum((jns, dt) | P_JKTBCustomer(jns) = jcs and P_JKTBLaycanTier(dt - P_JKTBETAAssumptionNew(jns) - P_JKTBLoadEndAssumptionNew(jns)) = lt,
+                       V_JKTBNominationSplitSchedule(jns, dt, lo))
+                }
+            }
             Parameter O_JKTBNominationScheduleTonnesByWeek {
                 IndexDomain: (pd,wk);
                 Definition: sum(jn | P_WeekOfDate(O_JKTBNominationScheduleLoadEnd(jn)) = wk, P_JKTBDemand(jn, pd));
@@ -59,6 +209,10 @@ LibraryModule Library_GUI {
                       'gui::O_JKTBNominationScheduleLaycanEnd'   : "Laycan end"  ,  'gui::O_JKTBNominationScheduleLaycanStart' : "Laycan start",
                       'gui::O_JKTBNominationScheduleLocation'     : "Load port"     }
                 }
+            }
+            Parameter O_JKTBLaycanDeltaDays {
+                IndexDomain: jn | O_JKTBNominationScheduleLaycanStart(jn) >= P_JKTBPlanningStartDate;
+                Definition: O_JKTBNominationScheduleLaycanStart(jn) - P_JKTBLaycanStart(jn);
             }
         }
         DeclarationSection Post_process {
@@ -108,7 +262,7 @@ LibraryModule Library_GUI {
         Set s_weeks_plan {
             SubsetOf: S_Weeks;
             Definition: {
-                {31.. 35}
+                {34.. 39}
             }
         }
         Parameter p_JKTB_supply {

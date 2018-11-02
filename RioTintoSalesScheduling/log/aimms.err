@@ -1,0 +1,194 @@
+Warning at line 6410.
+The units associated with the expression (Abs( gui::O_JKTBNominationScheduleLaycanStart(jn) - P_JKTBLaycanStart(jn)) )[day], and with the expression (0)[] are not commensurate.
+Warning at line 6496.
+The unit [] of parameter "gui::O_JKTBLaycanDeltaDays" is not commensurate with the unit [day] of its "definition".
+Warning at line 76 in user-defined function section "ChinaMainModelPreparation".
+The unit [] of parameter "P_ChinaTimeCompareNumber1" is not commensurate with the unit [second] of its "assigned value".
+Warning at line 84 in user-defined function section "ChinaMainModelPreparation".
+The unit [] of parameter "P_ChinaTimeCompareNumber2" is not commensurate with the unit [second] of its "assigned value".
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 3.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 3.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 2 in user-defined function section "webui::PROIsInitialized", column 62.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 2 in user-defined function section "webui::PROIsInitialized".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+A DataChangeMonitor with ID DataChangeMonitor001 does not exist.
+Warning at line 15543.
+The element parameter "P_JKTBLaycanStart" is not initialized (default values are used).
+Warning at line 15543.
+The element parameter "P_JKTBPlanningEndDate" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBLaycanStartLoadEndGap" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBIfNominationLocation" is not initialized (default values are used).
+Warning at line 15543.
+The domain set "S_JKTBNomination_One" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBNominationSchedule" is not initialized (default values are used).
+Warning at line 15543.
+The set "S_JKTBNomination_Split" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBNominationSplitSchedule" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBLoadEndAssumption" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBETAAssumption" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBLaycanLengthAssumption" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBDemand" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_SalesEntityProductPair" is not initialized (default values are used).
+Warning at line 15543.
+The parameter "P_JKTBNominationProductSalesEntity" is not initialized (default values are used).
+Warning at line 1 in user-defined function section "JKTBSolve".
+The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,40)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,41)" are equal in the generated mathematical program "M_JKTBModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "JKTBSolve".
+The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,39)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,40)" are equal in the generated mathematical program "M_JKTBModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "JKTBSolve".
+The columns "V_JKTBNegativeBalanceExcess(CLB,HIY-F,38)" and "V_JKTBNegativeBalanceExcess(CLB,HIY-F,39)" are equal in the generated mathematical program "M_JKTBModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "JKTBSolve".
+The rows "C_JKTBMaxCustomerNomination(DA,1,DSC)" and "C_JKTBMaxCustomerNomination(DA,1,FHS)" are equal in the generated mathematical program "M_JKTBModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "JKTBSolve".
+The rows "C_JKTBMaxCustomerNomination(DA,1,DSC)" and "C_JKTBMaxCustomerNomination(DA,1,HDS)" are equal in the generated mathematical program "M_JKTBModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "JKTBSolve".
+The rows "C_JKTBMaxCustomerNomination(DA,1,HDS)" and "C_JKTBMaxCustomerNomination(DA,1,HP)" are equal in the generated mathematical program "M_JKTBModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "JKTBSolve".
+Only 3 out of 1788 duplicate column warnings were reported.  See also option limit_reported_duplicate_column_row_warnings.
+Warning at line 1 in user-defined function section "JKTBSolve".
+Only 3 out of 50 duplicate row warnings were reported.  See also option limit_reported_duplicate_column_row_warnings.
+Warning at line 15545.
+The parameter "P_ChinaShipmentInScopeLaycanTier" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_RawChinaShipmentSAPNumber" is not initialized (default values are used).
+Warning at line 15547.
+The element parameter "P_ChinaChannelOfDestination" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaShipmentDestination" is not initialized (default values are used).
+Warning at line 15547.
+The element parameter "P_ChinaParentBuyer" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaShipmentStem" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaFinalShipmentStem" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaFinalShipmentStemByDe" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaDestinationDemand" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaShipmentInScopeStem" is not initialized (default values are used).
+Warning at line 15547.
+The variable "V_ChinaShipmentProductDestinationQuantity" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaBatchSize" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_IsShipmentValidForDestination" is not initialized (default values are used).
+Warning at line 15547.
+The variable "V_ChinaShipmentDestination" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaLaycanTierShipments" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaPreferedLancanTierPercentage" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaIsCustomerSouth" is not initialized (default values are used).
+Warning at line 15547.
+The parameter "P_ChinaIsCustomerNorth" is not initialized (default values are used).
+The maximum of 20 warnings reached, further warnings suppressed.  See also option maximal_number_of_warnings_reported
+Warning at line 15547.
+The parameter "P_ChinaCustomerLaycanTierPenalty" is not initialized (default values are used).
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The columns "V_ChinaSalesEntity(0358,PB-L,BJV)" and "V_ChinaSalesEntity(0358,PB-L,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The columns "V_ChinaSalesEntity(0358,PB-F,BJV)" and "V_ChinaSalesEntity(0358,PB-F,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The columns "V_ChinaSalesEntity(0361,PB-F,BJV)" and "V_ChinaSalesEntity(0361,PB-F,CJV)" are equal in the generated mathematical program "M_ChinaSalesEntityModel". This may lead to non-unique solutions.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_column".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The rows "C_ChinaPrefixedSalesEntity(1120,RV-F,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1120,RV-F)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The rows "C_ChinaPrefixedSalesEntity(1122,RV-L,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1122,RV-L)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+The rows "C_ChinaPrefixedSalesEntity(1122,RV-F,RR)" and "C_ChinaOneSalesEntityPerShipmentPerProduct(1122,RV-F)" are equal in the generated mathematical program "M_ChinaSalesEntityModel".  This may lead to non-unique shadow prices.  For more information regarding potential causes and consequences, see the help associated with the option "Warning_duplicate_row".
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+Only 3 out of 113 duplicate column warnings were reported.  See also option limit_reported_duplicate_column_row_warnings.
+Warning at line 1 in user-defined function section "ChinaSalesEntitySolve".
+Only 3 out of 16 duplicate row warnings were reported.  See also option limit_reported_duplicate_column_row_warnings.
+Input/output error at line 7 in user-defined function section "pro::LibraryTermination", column 56.
+The user function library \x64\AimmsPROClient.dll cannot be found.
+Input/output error at line 7 in user-defined function section "pro::LibraryTermination", column 56.
+The library \x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+Execution error at line 7 in user-defined function section "pro::LibraryTermination".
+The dll for external procedure "pro::management::IsInitialized" has not been found.
+Execution error at line 7 in user-defined function section "pro::LibraryTermination".
+The special value "undf" cannot be used in the condition IsInitialized() of a flow control statement.

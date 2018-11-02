@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <PageManager>
+	<Page Name="China KPI" PageGUID="6F30615D-8BCA-49A9-B463-4BBB78C69206" />
+	<Page Name="China" PageGUID="9A76EC5E-5E33-45E3-917C-91BA68223869" />
+	<Page Name="China export" PageGUID="850FE98B-077D-44D4-B9E2-14BF637B75D7" />
+	<Page Name="China inputs" PageGUID="50186342-B786-46C8-A71D-AD5A796F2332" />
+	<Page Name="China shipments in scope" PageGUID="B687B74E-80A4-4D0F-80EB-43871F465F23" />
 	<Page Name="MasterData" PageGUID="241778F4-4B77-4736-AD50-C305F3D0C0F5" />
 	<Page Name="Inputs" PageGUID="5D411390-D1A9-4D51-92F6-AAF74DA579A9">
 		<Page Name="Supply" PageGUID="4014522F-4D3A-421F-9AC8-5520BD8ACC6D" />
@@ -12,5 +17,6 @@
 	<Page Name="All Data Pages" PageGUID="38ADA2BE-3D23-44BA-92A5-2667F635A8A1">
 		<Page Name="[Data Page] gui IdentifierDisplayName" PageGUID="B39FE1A7-4334-44C1-B5D1-0F6FEA015B34" />
 		<Page Name="[Data Page] gui O_JKTBNominationScheduleTonnes" PageGUID="1489D5FA-9BF2-44E9-BD78-FFD523E2749F" />
+		<Page Name="[Data Page] gui O_JKTBLaycanEquity" PageGUID="AAD4B27C-89E2-47E3-B075-DEC5F95636BD" />
 	</Page>
 </PageManager>

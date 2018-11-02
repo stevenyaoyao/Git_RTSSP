@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Page Version="4000" TimeStamp="2018-07-25 02:54:42">
+<Page Version="4000" TimeStamp="2018-08-24 03:45:21">
 	<PageEditSize Type="Specified">
 		<Size Width="1500" Height="850" />
 	</PageEditSize>
@@ -598,7 +598,7 @@
 		</ExplicitIdentifier>
 	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="612" left="534" bottom="798" right="1092" />
+		<Location top="612" left="534" bottom="840" right="1212" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -645,7 +645,7 @@
 		</ExplicitIdentifier>
 	</PageObject>
 	<PageObject Type="Pivot Table">
-		<Location top="654" left="540" bottom="792" right="1086" />
+		<Location top="654" left="540" bottom="810" right="1140" />
 		<TabOrder>13</TabOrder>
 		<ObjectUUID>5777E603-F637-4F68-9B37-C2AB306EF4AA</ObjectUUID>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />

@@ -21,7 +21,7 @@
 	</ResizeData>
 	<Background Inherited="true" />
 	<PageObject Type="Rectangle">
-		<Location top="54" left="504" bottom="96" right="804" />
+		<Location top="54" left="546" bottom="96" right="804" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -30,7 +30,7 @@
 		</LineColor>
 	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="102" left="504" bottom="144" right="804" />
+		<Location top="102" left="546" bottom="144" right="804" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
@@ -85,7 +85,7 @@
 		</ActionSequence>
 	</PageObject>
 	<PageObject Type="Table">
-		<Location top="84" left="180" bottom="246" right="498" />
+		<Location top="84" left="180" bottom="246" right="534" />
 		<TabOrder>2</TabOrder>
 		<Font GUID="00000000-0000-0000-0000-000000000001" Name="Main Font" />
 		<Border Style="None" Width="2" MarginTop="5" MarginRight="5" MarginBottom="5" MarginLeft="5" />
@@ -99,41 +99,48 @@
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeight1</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeight2</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeight3</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeight4</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeight5</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeightExcess1</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 		<ExplicitIdentifier>
 			<Identifier>P_JKTBWeightExcess2</Identifier>
 			<FirstColumn>0</FirstColumn>
+			<IdentifierTextInTitle>true</IdentifierTextInTitle>
 			<NumberFormat Width="10" Decimals="0" ThousandSeparator="true" Alignment="Center" />
 		</ExplicitIdentifier>
 	</PageObject>
 	<PageObject Type="Text">
-		<Location top="108" left="510" bottom="132" right="648" />
+		<Location top="108" left="552" bottom="132" right="642" />
 		<StaticText>End date</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
@@ -141,7 +148,7 @@
 		</TextColor>
 	</PageObject>
 	<PageObject Type="Text">
-		<Location top="60" left="510" bottom="84" right="648" />
+		<Location top="60" left="552" bottom="84" right="642" />
 		<StaticText>Start date</StaticText>
 		<Font GUID="87C1A83D-E2A5-49C8-998D-C50AD3F3378B" Name="Widget header" />
 		<TextColor>
@@ -149,7 +156,7 @@
 		</TextColor>
 	</PageObject>
 	<PageObject Type="Rectangle">
-		<Location top="54" left="180" bottom="246" right="498" />
+		<Location top="54" left="180" bottom="246" right="534" />
 		<FillColor>
 			<UserColor>Widget background</UserColor>
 		</FillColor>
